@@ -24,7 +24,7 @@ async function getItems (req,res) {
     const { DB, condition } = req.body
     GetDB(DB)
 
-    const items = await Database.find(condition)
+    const items = await DataBase.find(condition)
 
     res.status(200).json(items)
 }
@@ -87,4 +87,12 @@ async function deleteItem (req,res) {
         message: "Deleted",
         DeletedItem: deletedItem
     })
+}
+
+module.exports = {
+    createItem,
+    getItems,
+    editItem,
+    deleteItem,
+    getItem
 }

@@ -9,7 +9,7 @@ const app = express()
 app.use(cors())
 app.use(express.json()) // parse incomming data
 // routes for requests will always now have '/menu'
-// eg http://localhost:4000/menu/menuitems
+// eg http://localhost:4000/menu/items
 app.use('/menu', menuRoutes)
 
 
