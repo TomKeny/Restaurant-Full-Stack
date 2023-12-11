@@ -23,11 +23,16 @@ function App() {
     setCalories(data)
   }
 
-  // useEffect( function () {
-  //   fetchCalories(ingredient)
-  // }, [])
-  
+  useEffect(() => {
+    fetchCalories(ingredient)
+  }, [])
 
+
+  if(!calories || !basket) return (
+    <div>
+      <h1>loading...</h1>
+    </div>
+  )
   return (
     <div className="App">
       <Basket 
