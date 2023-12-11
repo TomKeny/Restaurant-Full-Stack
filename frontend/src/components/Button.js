@@ -1,3 +1,4 @@
+import React from "react"
 //Modular button, pass in custom function and text when calling in App.js
 
 const Button = ({ func, text }) => {

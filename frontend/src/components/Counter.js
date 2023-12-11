@@ -1,7 +1,8 @@
 import {React,useState}  from "react";
-import Button from "./button";
+import Button from "./Button";
 
 //Creates a counter component that takes a starting parameter, usually Zero.  Has buttons to handle increments.
+// call as: <Counter count={0} />
 
 const Counter = ({count}) => {
     const [orderCount, setOrderCount] = useState(count)
