@@ -10,7 +10,7 @@ const itemSchema = new Schema({
         required: true
     },
     Price: {
-        type: String,
+        type: Number,
         required: true
     }
 })
