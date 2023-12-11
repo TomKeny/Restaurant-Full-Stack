@@ -8,6 +8,8 @@ import { MenuPage } from './pages/MenuPage'
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import Login from './components/Login';
+import Counter from './components/Counter';
+import Button from './components/Button';
 
 
 function App() {
@@ -76,6 +78,10 @@ function App() {
 
 
       <Login />
+      <div>
+        <Counter count={0} />
+        <Button text={"TEST BUTTON"} />
+      </div>
 
     </div>
   )
