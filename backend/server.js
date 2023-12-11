@@ -13,10 +13,9 @@ app.use(express.json()) // parse incomming data
 // eg http://localhost:4000/menu/items
 app.use('/menu', menuRoutes)
 
-// // Backend proxy that calls the Nutrition API on behalf of the front-end application
+// Backend proxy that calls the Nutrition API on behalf of the front-end application
 const API_URL = process.env.API_URL
 const API_KEY = process.env.API_KEY
-
 app.get('/nutrition', async (req, res) => {
   
     axios.get(API_URL, {
