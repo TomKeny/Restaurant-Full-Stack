@@ -1,4 +1,5 @@
 import './App.css';
+
 import { useState, useEffect } from 'react'
 import { Basket } from './components/Basket'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -6,11 +7,13 @@ import { HomePage } from './pages/HomePage'
 import { MenuPage } from './pages/MenuPage'
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CheckoutPage } from './pages/CheckoutPage';
+import Login from './components/Login';
+
 
 function App() {
 
   const [basket, setBasket] = useState('item one')
-  const [calories, setCalories] = useState([])
+  const [calories, setCalories] = useState([""])
   const [ingredient, setIngredient] = useState('brisket')
 
   // const API_KEY = process.env.REACT_APP_API_KEY
@@ -26,21 +29,28 @@ function App() {
     const data = await response.json()
     setCalories(data)
   }
+
+
   useEffect(() => {
     fetchCalories(ingredient)
   }, [])
+
 
   if (!calories || !basket) return (
     <div>
       <h1>loading...</h1>
     </div>
   )
+
+
+
   return (
     <div className="App">
       <Basket
         basket={basket}
       />
       <p>{`${ingredient} calories: ${calories[0].calories}`}</p>
+
       <BrowserRouter>
         <Routes>
           <Route
@@ -63,6 +73,10 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+
+
+      <Login />
+
     </div>
   )
 }
