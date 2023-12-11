@@ -23,10 +23,11 @@ function App() {
     setCalories(data)
   }
 
-  // useEffect( function () {
-  //   fetchCalories(ingredient)
-  // }, [])
-  
+
+  useEffect(() => {
+    fetchCalories(ingredient)
+  }, [])
+
 
   return (
     <div className="App">
