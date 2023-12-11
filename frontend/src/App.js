@@ -1,11 +1,12 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import {Basket} from './components/Basket'
+import Login from './components/Login';
 
 function App() {
 
   const [basket, setBasket] = useState('item one')
-  const [calories, setCalories] = useState([])
+  const [calories, setCalories] = useState([""])
   const [ingredient, setIngredient] = useState('brisket')
 
   // const API_KEY = process.env.REACT_APP_API_KEY
@@ -21,9 +22,11 @@ function App() {
     const data = await response.json()
     setCalories(data)
   }
+
   useEffect(() => {
     fetchCalories(ingredient)
   }, [])
+
 
   if(!calories || !basket) return (
     <div>
@@ -36,6 +39,8 @@ function App() {
         basket = {basket}
       />
       <p>{`${ingredient} calories: ${calories[0].calories}`}</p>
+
+      <Login />
     </div>
   )
 }
