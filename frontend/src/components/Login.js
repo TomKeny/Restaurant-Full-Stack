@@ -12,7 +12,7 @@ function Login() {
         let response = await getItems("user", JSON.stringify({Username:username,Password:password}))
         setUsername("")
         setPassword("")
-        setUserID(response[0])
+        setUserID(response[0]._id)
     }
 
 
