@@ -34,7 +34,7 @@ async function getItem (req,res) {
     const { DB } = req.body
     GetDB(DB)
 
-    const item = await DataBase.findByID(id)
+    const item = await DataBase.findById(id)
 
     res.status(200).json(item)
 }
@@ -67,13 +67,13 @@ async function createItem (req,res) {
 
 async function editItem (req,res) {
     const { id } = req.params
-    const { DB, update } = req.body
+    const { DB, Update } = req.body
     GetDB(DB)
 
-    await DataBase.findByIdAndUpdate(id, update)
+    await DataBase.findByIdAndUpdate(id, Update)
     res.status(200).json({
         message: "Updated",
-        Update: update
+        Update: Update
     })
 }
 
@@ -82,7 +82,7 @@ async function deleteItem (req,res) {
     const { DB } = req.body
     GetDB(DB)   
 
-    const deletedItem = await Database.findByIdAndDelete(id)
+    const deletedItem = await DataBase.findByIdAndDelete(id)
     res.status(200).json({
         message: "Deleted",
         DeletedItem: deletedItem
