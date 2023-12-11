@@ -1,20 +1,18 @@
 import {React,useState}  from "react";
-import addItem from "../api/addItem";
+import { getItems } from "../api/getItems";
 
 function Login() {
 
     const [username, setUsername] = useState ("")
     const [password, setPassword] = useState ("")
+    const [userID, setUserID] = useState("")
 
     async function submitHandler(e) {
         e.preventDefault()
-        let response = await addItem("user", {
-            Username: username,
-            Password: password
-        })
+        let response = await getItems("user", JSON.stringify({Username:username,Password:password}))
         setUsername("")
         setPassword("")
-        console.log(response)
+        setUserID(response[0])
     }
 
 
