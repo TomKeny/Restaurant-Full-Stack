@@ -1,9 +1,24 @@
+import { useState, useEffect } from 'react'
+
+
 export const MenuPage = () => {
 
-    // This is the menu page, it will have a list of all the items in our menu, each item will be clickable and go to a new menuitempage
+    const [menu, setMenu] = useState([])
+
+    useEffect(() => {
+        setMenu()
+    }, [])
+
+    if (!menu) return (
+        <div>
+            <h1>loading menu...</h1>
+        </div>
+    )
     return (
         <div>
-            <h1>Menu Page </h1>
+            <h1>Menu Page</h1>
+            {/* calorie info */}
+            {/* <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p> */}
 
             {/* dummy data */}
             <ul>
@@ -17,3 +32,4 @@ export const MenuPage = () => {
         </div>
     )
 }
+
