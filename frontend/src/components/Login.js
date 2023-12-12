@@ -11,7 +11,7 @@ const Login = ({setUserID}) => {
     async function loginSubmitHandler(e) {
         e.preventDefault()
 
-        let response = await getItems("user", JSON.stringify({Username:username,Password:password}))
+        let response = await getItems("user", {Username:username,Password:password})
         setUsername("")
         setPassword("")
         if (response.length > 0) {
@@ -23,7 +23,7 @@ const Login = ({setUserID}) => {
         e.preventDefault()
         let response = await addItem("user", {Username: username, Password: password})
         console.log(response)
-        let newResponse = await getItems("user", JSON.stringify({Username:username,Password:password}))
+        let newResponse = await getItems("user", {Username:username,Password:password})
 
         setUsername("")
         setPassword("")
