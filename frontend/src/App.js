@@ -68,7 +68,11 @@ function App() {
       </BrowserRouter>
 
 
-      {userID == "" ? <Login setUserID={setUserID}/>: <h3 style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "lightGrey"}}>{userID.Username}</h3>}
+      {userID === "" ? <Login setUserID={setUserID}/>: 
+      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
+        <h3 style={{margin: 0}}>{userID.Username}</h3>
+        <p onClick={() => setUserID("")} style={{margin: 0}}>Log Out</p>
+        </div>}
 
     </div>
   )
