@@ -21,9 +21,11 @@ function Login({ setUserID }) {
     async function registerSubmitHandler(e) {
         e.preventDefault()
         let response = await addItem("user", {Username: username, Password: password})
+        console.log(response)
+        let newResponse = await getItems("user", JSON.stringify({Username:username,Password:password}))
         setUsername("")
         setPassword("")
-        console.log(response)
+        setUserID({UserID: newResponse[0]._id, Username: newResponse[0].Username})
     }
 
     function Toggle () {

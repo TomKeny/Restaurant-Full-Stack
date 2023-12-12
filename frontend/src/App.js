@@ -68,7 +68,7 @@ function App() {
       </BrowserRouter>
 
 
-      {userID == "" && <Login setUserID={setUserID}/>}
+      {userID == "" ? <Login setUserID={setUserID}/>: <h3 style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "lightGrey"}}>{userID.Username}</h3>}
 
     </div>
   )
