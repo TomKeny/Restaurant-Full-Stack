@@ -21,17 +21,20 @@ function GetDB (DB) {
 }
 
 async function getItems (req,res) {
-    const { DB, condition } = req.body
+    const DB = req.params.DB
+    const condition = req.params.condition
     GetDB(DB)
+    
+    const Condition = await JSON.parse(condition)
 
-    const items = await DataBase.find(condition)
+    const items = await DataBase.find(Condition)
 
     res.status(200).json(items)
 }
 
 async function getItem (req,res) {
-    const { id } = req.params
-    const { DB } = req.body
+    const id = req.params.id
+    const DB = req.params.DB
     GetDB(DB)
 
     const item = await DataBase.findById(id)

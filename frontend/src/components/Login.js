@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import addItem from "../api/addItem";
 
-export const LoginPage = () => {
+export const Login = () => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")

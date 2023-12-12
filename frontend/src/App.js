@@ -7,7 +7,7 @@ import { HomePage } from './pages/HomePage'
 import { MenuPage } from './pages/MenuPage'
 import { MenuItemPage } from './pages/MenuItemPage'
 import { CheckoutPage } from './pages/CheckoutPage'
-import Login from './pages/LoginPage'
+import { Login } from './components/Login'
 import { Nav } from './components/Nav'
 
 
@@ -16,24 +16,13 @@ function App() {
   const [basket, setBasket] = useState('item one')
   const [calories, setCalories] = useState([""])
   const [ingredient, setIngredient] = useState('brisket')
+  const [userID, setUserID] = useState("")
 
-  // const API_KEY = process.env.REACT_APP_API_KEY
-
-
-  ////////////////////////
-  // need to move this to menu item page
   const fetchCalories = async (ingredient) => {
-    let url = "https://api.api-ninjas.com/v1/nutrition?query=" + ingredient
-    console.log(url)
-    const response = await fetch(url, {
-      headers: {
-        "X-Api-Key": "I1ag09jAflT2yzafLPY2rg==uQsRfm7qfrirU7eq"
-      }
-    })
+    const response = await fetch('http://localhost:4000/nutrition')
     const data = await response.json()
     setCalories(data)
   }
-
 
   useEffect(() => {
     fetchCalories(ingredient)
@@ -45,7 +34,7 @@ function App() {
       <h1>loading...</h1>
     </div>
   )
-  ///////////////////////////
+
 
 
   return (
@@ -56,7 +45,7 @@ function App() {
         basket={basket}
       />
 
-      <p>{`${ingredient} calories: ${calories[0].calories}`}</p>
+      <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p>
 
       <BrowserRouter>
         <Routes>
@@ -78,14 +67,11 @@ function App() {
             element={<CheckoutPage />}
           />
 
-
-          <Route
-            path='/login'
-            element={<Login />}
-          />
-
         </Routes>
       </BrowserRouter>
+
+
+      {userID == "" && <Login setUserID={setUserID} />}
 
     </div>
   )
