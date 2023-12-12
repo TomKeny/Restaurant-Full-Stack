@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import logoImage from '../images/logo-knife-fork.png'
 
 const navigation = [
     { name: 'Home', href: '/', current: true },
@@ -38,8 +39,8 @@ export const Nav = () => {
                                     <img
                                         className="h-8 w-auto"
                                         // src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        src="https://www.svgrepo.com//show/36663/fork-and-knife.svg" alt="Mancunian Restaurant"
-                                        alt="Company Logo"
+                                        src={logoImage}
+                                        alt="Mancunian Restaurant"
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">

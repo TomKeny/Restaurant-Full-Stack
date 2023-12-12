@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
-import image1 from "../images/pexels-makafood-8982387.jpg";
-import image2 from "../images/pexels-valeria-boltneva-1639565.jpg";
+import image1 from "../images/pexels-chan-walrus-958545.jpg";
+import image2 from "../images/pexels-shameel-mukkath-14883752.jpg";
+import image3 from "../images/pexels-valeria-boltneva-1639565.jpg";
+import image4 from "../images/pexels-leonardo-luz-13999216.jpg";
+
 
 
 export const HomePage = () => {
 
     return (
-        <div>
+        <div className="bg-fancy-dark-blue">
 
             <section>
                 <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
@@ -14,14 +17,14 @@ export const HomePage = () => {
                         <div class="relative z-10 lg:py-16">
                             <div class="relative h-64 sm:h-80 lg:h-full">
                                 <img
-                                    alt="Dish"
+                                    alt="food image"
                                     src="https://img.freepik.com/premium-photo/photo-closeup-shot-delicious-food_829042-89.jpg"
                                     class="absolute inset-0 h-full w-full object-cover"
                                 />
                             </div>
                         </div>
 
-                        <div className="relative flex items-center bg-gray-100">
+                        <div className="relative flex items-center bg-gold">
                             <span
                                 class="hidden lg:absolute lg:inset-y-0 lg:-start-16 lg:block lg:w-16 lg:bg-gray-100"
                             ></span>
@@ -31,7 +34,7 @@ export const HomePage = () => {
                                     Mancunian Restaurant
                                 </h2>
 
-                                <p class="mt-6 text-gray-600">
+                                <p class="mt-6">
                                     Welcome to Manchester's award-winning restaurant. (add more text here)
                                 </p>
 
@@ -55,7 +58,7 @@ export const HomePage = () => {
             </section>
 
             {/* // GALLERY OF FOOD IMAGES TO GO HERE */}
-            <div className="bg-white dark:bg-gray-800 h-screen h-full py-6 sm:py-8 lg:py-12">
+            <div className=" dark:bg-gray-800 h-screen h-full py-6 sm:py-8 lg:py-12">
                 <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
                     <div className="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
                         <div className="flex items-center gap-12">
@@ -81,20 +84,7 @@ export const HomePage = () => {
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
 
-                            <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">VR</span>
-                        </a>
-                        {/* <!-- image - end --> */}
-
-                        {/* <!-- image - start --> */}
-                        <a href="#"
-                            className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
-                            <img src="https://images.unsplash.com/photo-1542759564-7ccbb6ac450a?auto=format&q=75&fit=crop&w=1000" loading="lazy" alt="Photo by Magicle" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-                            <div
-                                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
-                            </div>
-
-                            {/* <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Tech</span> */}
+                            {/* <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">VR</span> */}
                         </a>
                         {/* <!-- image - end --> */}
 
@@ -107,6 +97,19 @@ export const HomePage = () => {
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
 
+                            {/* <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Tech</span> */}
+                        </a>
+                        {/* <!-- image - end --> */}
+
+                        {/* <!-- image - start --> */}
+                        <a href="#"
+                            className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
+                            <img src={image3} loading="lazy" alt="samosas" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+                            <div
+                                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
+                            </div>
+
                             {/* <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Dev</span> */}
                         </a>
                         {/* <!-- image - end --> */}
@@ -114,7 +117,7 @@ export const HomePage = () => {
                         {/* <!-- image - start --> */}
                         <a href="#"
                             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Lorenzo Herrera" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <img src={image4} loading="lazy" alt="chicken wings" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                             <div
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">

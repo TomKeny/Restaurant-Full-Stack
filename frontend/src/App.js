@@ -1,14 +1,15 @@
 import './App.css';
 
-import { useState, useEffect } from 'react'
-import { Basket } from './components/Basket'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
-import { MenuPage } from './pages/MenuPage'
-import { MenuItemPage } from './pages/MenuItemPage'
-import { CheckoutPage } from './pages/CheckoutPage'
-import { Login } from './components/Login'
-import { Nav } from './components/Nav'
+import { useState, useEffect } from 'react';
+import { Basket } from './components/Basket';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { MenuPage } from './pages/MenuPage';
+import { MenuItemPage } from './pages/MenuItemPage';
+import { CheckoutPage } from './pages/CheckoutPage';
+import { Login } from './components/Login';
+import { Nav } from './components/Nav';
+import { Footer } from './components/Footer';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App text-white">
 
       {/* <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p> */}
 
@@ -65,6 +66,8 @@ function App() {
           />
 
         </Routes>
+
+        <Footer />
       </BrowserRouter>
 
 
