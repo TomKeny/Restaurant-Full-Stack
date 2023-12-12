@@ -1,12 +1,14 @@
 import { React, useState } from "react";
 import addItem from "../api/addItem";
+import getItems from "../api/getItems";
 
-export const Login = () => {
+export const Login = ({setUserID}) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [toggle, setToggle] = useState(true)
 
-    async function submitHandler(e) {
+    async function loginSubmitHandler(e) {
         e.preventDefault()
 
         let response = await getItems("user", JSON.stringify({Username:username,Password:password}))
@@ -28,7 +30,9 @@ export const Login = () => {
         setUserID({UserID: newResponse[0]._id, Username: newResponse[0].Username})
     }
 
-
+    function Toggle () {
+        toggle ? setToggle(false):setToggle(true)
+    }
 
     return (
 
