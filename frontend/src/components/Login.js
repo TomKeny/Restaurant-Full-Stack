@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import addItem from "../api/addItem";
 import getItems from "../api/getItems";
 
-export const Login = ({setUserID}) => {
+const Login = ({setUserID}) => {
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -50,3 +50,5 @@ export const Login = ({setUserID}) => {
         </div>
     )
 }
+
+export default Login
