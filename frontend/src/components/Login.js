@@ -1,15 +1,14 @@
-import {React,useState}  from "react";
-import getItems from "../api/getItems";
+import { React, useState } from "react";
 import addItem from "../api/addItem";
 
-function Login({ setUserID }) {
+export const Login = () => {
 
-    const [username, setUsername] = useState ("")
-    const [password, setPassword] = useState ("")
-    const [toggle, setToggle] = useState(true)
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
-    async function loginSubmitHandler(e) {
+    async function submitHandler(e) {
         e.preventDefault()
+
         let response = await getItems("user", JSON.stringify({Username:username,Password:password}))
         setUsername("")
         setPassword("")
@@ -23,17 +22,16 @@ function Login({ setUserID }) {
         let response = await addItem("user", {Username: username, Password: password})
         console.log(response)
         let newResponse = await getItems("user", JSON.stringify({Username:username,Password:password}))
+
         setUsername("")
         setPassword("")
         setUserID({UserID: newResponse[0]._id, Username: newResponse[0].Username})
     }
 
-    function Toggle () {
-        (toggle ? setToggle(false): setToggle(true))
-    }
 
 
     return (
+
         <div id="LogginBlock" style={{position: "fixed", right: 10, top: 10, padding: "20px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
             <h2>{toggle ? "Login":"Register"}</h2>
             <form onSubmit={toggle ? loginSubmitHandler: registerSubmitHandler}>
@@ -47,7 +45,6 @@ function Login({ setUserID }) {
             </form>
             <p onClick={Toggle}>{toggle ? "Register Account":"Login"}</p>
         </div>
+
     )
 }
-
-export default Login
