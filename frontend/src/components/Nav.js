@@ -1,4 +1,4 @@
-export const Nav = () => {
+export const Nav = ({setLoginVisible,loginVisible}) => {
     return (
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -48,7 +48,7 @@ export const Nav = () => {
                         </button>
 
                         {/*Profile dropdown */}
-                        <div className="relative ml-3">
+                        <div className="relative ml-3" onClick={() => {loginVisible ? setLoginVisible(false):setLoginVisible(true)}}>
                             <div>
                                 <button type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                     <span className="absolute -inset-1.5"></span>

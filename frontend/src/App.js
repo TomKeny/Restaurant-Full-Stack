@@ -19,6 +19,7 @@ function App() {
   const [basket, setBasket] = useState('item one')
   const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
+  const [loginVisible, setLoginVisible] = useState(false)
 
   const fetchCalories = async () => {
     const response = await fetch('http://localhost:4000/nutrition')
@@ -27,7 +28,7 @@ function App() {
   }
 
   async function populate () {
-    let response = await getItems("item", JSON.stringify({}))
+    let response = await getItems("item", {})
     if (response.length == 0) {
       PopulateMenuItems()
       // get items data and run a calorie fetch for each item
@@ -53,8 +54,8 @@ function App() {
 
   return (
     <div className="App">
-      <Nav />
-
+      <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
+      
       <Basket
         basket={basket}
       />
@@ -83,11 +84,11 @@ function App() {
       </BrowserRouter>
 
 
-      {userID === "" ? <Login setUserID={setUserID}/>: 
-      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
-        <h3 style={{margin: 0}}>{userID.Username}</h3>
-        <p onClick={() => setUserID("")} style={{margin: 0}}>Log Out</p>
-        </div>}
+      {loginVisible && (userID === "" ? <Login setUserID={setUserID}/>: 
+      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray"}}>
+        <h3 style={{margin: 0, marginRight: 5, fontWeight: "bold", float:"left"}}>{userID.Username}</h3>
+        <p onClick={() => setUserID("")} style={{margin: 0, float:"left"}}>Log Out</p>
+        </div>)}
 
 
     </div>

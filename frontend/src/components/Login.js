@@ -11,7 +11,7 @@ const Login = ({setUserID}) => {
     async function loginSubmitHandler(e) {
         e.preventDefault()
 
-        let response = await getItems("user", JSON.stringify({Username:username,Password:password}))
+        let response = await getItems("user", {Username:username,Password:password})
         setUsername("")
         setPassword("")
         if (response.length > 0) {
@@ -23,7 +23,7 @@ const Login = ({setUserID}) => {
         e.preventDefault()
         let response = await addItem("user", {Username: username, Password: password})
         console.log(response)
-        let newResponse = await getItems("user", JSON.stringify({Username:username,Password:password}))
+        let newResponse = await getItems("user", {Username:username,Password:password})
 
         setUsername("")
         setPassword("")
@@ -35,14 +35,13 @@ const Login = ({setUserID}) => {
     }
 
     return (
-        <div id="LogginBlock" style={{position: "fixed", right: 10, top: 80, padding: "20px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
-            <h2>{toggle ? "Login":"Register"}</h2>
+        <div id="LogginBlock" style={{position: "fixed", right: 10, top: 10, padding: "5px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray"}}>
             <form onSubmit={toggle ? loginSubmitHandler: registerSubmitHandler}>
                 <label for="Username" style={{display: "inline-block", width: 80, marginTop: 5}}>Username</label>
-                <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
+                <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{backgroundColor: "lightgray", color: "black"}}></input>
                 <br></br>
                 <label for="Password" style={{display: "inline-block", width: 80, marginTop: 5}}>Password</label>
-                <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{backgroundColor: "lightgray", color: "black"}}></input>
                 <br></br>
                 <button type="submit" style={{marginTop: 5}}>{toggle ? "Login":"Register"}</button>
             </form>
