@@ -32,13 +32,13 @@ function Login({ setUserID }) {
 
 
     return (
-        <div id="LogginBlock">
+        <div id="LogginBlock" style={{position: "fixed", right: 10, top: 10, padding: "20px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
             <h2>{toggle ? "Login":"Register"}</h2>
             <form onSubmit={toggle ? loginSubmitHandler: registerSubmitHandler}>
-                <label for="Username">Username</label>
+                <label for="Username" style={{display: "inline-block", width: 80}}>Username</label>
                 <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
                 <br></br>
-                <label for="Password">Password</label>
+                <label for="Password" style={{display: "inline-block", width: 80}}>Password</label>
                 <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 <br></br>
                 <button type="submit">{toggle ? "Login":"Register"}</button>
