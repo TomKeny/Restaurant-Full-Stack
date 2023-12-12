@@ -35,16 +35,16 @@ export const Login = ({setUserID}) => {
     }
 
     return (
-        <div id="LogginBlock" style={{position: "fixed", right: 10, top: 10, padding: "20px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
+        <div id="LogginBlock" style={{position: "fixed", right: 10, top: 80, padding: "20px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
             <h2>{toggle ? "Login":"Register"}</h2>
             <form onSubmit={toggle ? loginSubmitHandler: registerSubmitHandler}>
-                <label for="Username" style={{display: "inline-block", width: 80}}>Username</label>
+                <label for="Username" style={{display: "inline-block", width: 80, marginTop: 5}}>Username</label>
                 <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)}></input>
                 <br></br>
-                <label for="Password" style={{display: "inline-block", width: 80}}>Password</label>
+                <label for="Password" style={{display: "inline-block", width: 80, marginTop: 5}}>Password</label>
                 <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 <br></br>
-                <button type="submit">{toggle ? "Login":"Register"}</button>
+                <button type="submit" style={{marginTop: 5}}>{toggle ? "Login":"Register"}</button>
             </form>
             <p onClick={Toggle}>{toggle ? "Register Account":"Login"}</p>
         </div>
