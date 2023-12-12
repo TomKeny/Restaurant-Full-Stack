@@ -28,7 +28,7 @@ app.get('/nutrition', async (req, res) => {
             console.log(error)
         })
 
-  });
+});
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(() => {

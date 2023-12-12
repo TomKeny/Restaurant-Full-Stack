@@ -15,14 +15,13 @@ import { Nav } from './components/Nav'
 
 function App() {
 
-  const [basket, setBasket] = useState('item one')
   const [calories, setCalories] = useState([""])
+  const [basket, setBasket] = useState('item one')
   const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
-  const [menu, setMenu] = useState([])
   const [loginVisible, setLoginVisible] = useState(false)
 
-  const fetchCalories = async (ingredient) => {
+  const fetchCalories = async () => {
     const response = await fetch('http://localhost:4000/nutrition')
     const data = await response.json()
     setCalories(data)
@@ -32,18 +31,20 @@ function App() {
     let response = await getItems("item", {})
     if (response.length == 0) {
       PopulateMenuItems()
+      // get items data and run a calorie fetch for each item
+      
     }
   }
  
   useEffect(() => {
-    fetchCalories(ingredient)
+    // fetchCalories() // put into populate so it only runs once
     populate()   
   }, [])
 
 
 
 
-  if (!calories || !basket) return (
+  if (!basket) return (
     <div>
       <h1>loading...</h1>
     </div>
@@ -58,8 +59,6 @@ function App() {
       <Basket
         basket={basket}
       />
-
-      <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p>
 
       <BrowserRouter>
         <Routes>
