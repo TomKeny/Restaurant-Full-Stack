@@ -43,7 +43,7 @@ function Login({ setUserID }) {
                 <br></br>
                 <button type="submit">{toggle ? "Login":"Register"}</button>
             </form>
-            <p onClick={Toggle}>{toggle ? "Register":"Login"}</p>
+            <p onClick={Toggle}>{toggle ? "Register Account":"Login"}</p>
         </div>
     )
 }
