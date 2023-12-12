@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import image1 from "../images/pexels-makafood-8982387.jpg";
+import image2 from "../images/pexels-valeria-boltneva-1639565.jpg";
+
 
 export const HomePage = () => {
 
@@ -60,15 +62,11 @@ export const HomePage = () => {
                             <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-white">Gallery</h2>
 
                             <p className="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
-                                This is a section of some simple filler text,
-                                also known as placeholder text. It shares some characteristics of a real written text.
+                                text here
                             </p>
                         </div>
 
-                        <a href="#"
-                            className="inline-block rounded-lg border bg-white dark:bg-gray-700 dark:border-none px-4 py-2 text-center text-sm font-semibold text-gray-500 dark:text-gray-200 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:px-8 md:py-3 md:text-base">
-                            More
-                        </a>
+
                     </div>
 
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
@@ -76,7 +74,7 @@ export const HomePage = () => {
                         <a href="#"
                             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
                             {/* <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Minh Pham" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" /> */}
-                            <img src={image1} loading="lazy" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <img src={image1} loading="miso" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
 
                             <div
@@ -96,20 +94,20 @@ export const HomePage = () => {
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
 
-                            <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Tech</span>
+                            {/* <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Tech</span> */}
                         </a>
                         {/* <!-- image - end --> */}
 
                         {/* <!-- image - start --> */}
                         <a href="#"
                             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
-                            <img src="https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?auto=format&q=75&fit=crop&w=1000" loading="lazy" alt="Photo by Martin Sanchez" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <img src={image2} loading="lazy" alt="burger" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
                             <div
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
 
-                            <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Dev</span>
+                            {/* <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Dev</span> */}
                         </a>
                         {/* <!-- image - end --> */}
 
@@ -122,7 +120,7 @@ export const HomePage = () => {
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
 
-                            <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Retro</span>
+                            {/* <span className="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg">Retro</span> */}
                         </a>
                         {/* <!-- image - end --> */}
                     </div>
