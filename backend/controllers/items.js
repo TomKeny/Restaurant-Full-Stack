@@ -16,7 +16,7 @@ function GetDB (DB) {
             DataBase = User
             break
         default:
-            Database = User
+            DataBase = User
     }
 }
 

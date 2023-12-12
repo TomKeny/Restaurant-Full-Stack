@@ -2,12 +2,14 @@ import './App.css';
 
 import { useState, useEffect } from 'react'
 import { Basket } from './components/Basket'
+import { PopulateMenuItems } from './api/PopulateMenuItems'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { MenuPage } from './pages/MenuPage'
-import { MenuItemPage } from './pages/MenuItemPage'
-import { CheckoutPage } from './pages/CheckoutPage'
-import { Login } from './components/Login'
+import { MenuItemPage } from './pages/MenuItemPage';
+import { CheckoutPage } from './pages/CheckoutPage';
+import Login from './components/Login';
+import getItems from './api/getItems';
 import { Nav } from './components/Nav'
 
 
@@ -17,6 +19,7 @@ function App() {
   const [calories, setCalories] = useState([""])
   const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
+  const [menu, setMenu] = useState([])
 
   const fetchCalories = async (ingredient) => {
     const response = await fetch('http://localhost:4000/nutrition')
@@ -24,10 +27,16 @@ function App() {
     setCalories(data)
   }
 
-
+  async function populate () {
+    let response = await getItems("item", JSON.stringify({}))
+    if (response.length == 0) {
+      PopulateMenuItems()
+    }
+  }
+ 
   useEffect(() => {
     fetchCalories(ingredient)
-    
+    populate()   
   }, [])
 
 
@@ -44,7 +53,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-
+      
       <Basket
         basket={basket}
       />
