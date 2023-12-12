@@ -1,10 +1,10 @@
-import {React,useState}  from "react";
+import { React, useState } from "react";
 import addItem from "../api/addItem";
 
-function Login() {
+export const LoginPage = () => {
 
-    const [username, setUsername] = useState ("")
-    const [password, setPassword] = useState ("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     async function submitHandler(e) {
         e.preventDefault()
@@ -27,5 +27,3 @@ function Login() {
         </form>
     )
 }
-
-export default Login

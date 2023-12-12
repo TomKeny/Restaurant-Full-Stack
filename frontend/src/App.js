@@ -5,9 +5,10 @@ import { Basket } from './components/Basket'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { MenuPage } from './pages/MenuPage'
-import { MenuItemPage } from './pages/MenuItemPage';
-import { CheckoutPage } from './pages/CheckoutPage';
-import Login from './components/Login';
+import { MenuItemPage } from './pages/MenuItemPage'
+import { CheckoutPage } from './pages/CheckoutPage'
+import Login from './pages/LoginPage'
+import { Nav } from './components/Nav'
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
 
   // const API_KEY = process.env.REACT_APP_API_KEY
 
+
+  ////////////////////////
+  // need to move this to menu item page
   const fetchCalories = async (ingredient) => {
     let url = "https://api.api-ninjas.com/v1/nutrition?query=" + ingredient
     console.log(url)
@@ -41,14 +45,17 @@ function App() {
       <h1>loading...</h1>
     </div>
   )
-
+  ///////////////////////////
 
 
   return (
     <div className="App">
+      <Nav />
+
       <Basket
         basket={basket}
       />
+
       <p>{`${ingredient} calories: ${calories[0].calories}`}</p>
 
       <BrowserRouter>
@@ -71,11 +78,14 @@ function App() {
             element={<CheckoutPage />}
           />
 
+
+          <Route
+            path='/login'
+            element={<Login />}
+          />
+
         </Routes>
       </BrowserRouter>
-
-
-      <Login />
 
     </div>
   )
