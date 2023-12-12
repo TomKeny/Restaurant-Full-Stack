@@ -1,6 +1,6 @@
 const API_URL = `http://localhost:4000`
 
-export const getItem = async (DB, id) => {
+const getItem = async (DB, id) => {
 
     const response = await fetch(`${API_URL}/menu/item/${id}/${DB}`, {
         method: "get",
@@ -13,3 +13,5 @@ export const getItem = async (DB, id) => {
     const data = await response.json()
     return data
 }
+
+export default getItem

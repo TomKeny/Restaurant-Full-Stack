@@ -15,6 +15,7 @@ function App() {
   const [basket, setBasket] = useState('item one')
   const [calories, setCalories] = useState([""])
   const [ingredient, setIngredient] = useState('brisket')
+  const [userID, setUserID] = useState("")
   
   const fetchCalories = async (ingredient) => {
     const response = await fetch('http://localhost:4000/nutrition')
@@ -67,7 +68,7 @@ function App() {
       </BrowserRouter>
 
 
-      <Login />
+      {userID == "" && <Login setUserID={setUserID}/>}
 
     </div>
   )
