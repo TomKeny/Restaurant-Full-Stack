@@ -85,9 +85,9 @@ function App() {
 
 
       {userID === "" ? <Login setUserID={setUserID}/>: 
-      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
-        <h3 style={{margin: 0}}>{userID.Username}</h3>
-        <p onClick={() => setUserID("")} style={{margin: 0}}>Log Out</p>
+      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray"}}>
+        <h3 style={{margin: 0, marginRight: 5, fontWeight: "bold", float:"left"}}>{userID.Username}</h3>
+        <p onClick={() => setUserID("")} style={{margin: 0, float:"left"}}>Log Out</p>
         </div>}
 
 
