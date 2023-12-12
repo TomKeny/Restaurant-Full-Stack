@@ -35,7 +35,6 @@ export const Login = ({setUserID}) => {
     }
 
     return (
-
         <div id="LogginBlock" style={{position: "fixed", right: 10, top: 10, padding: "20px", borderRadius: "10px", backgroundColor: "lightGrey"}}>
             <h2>{toggle ? "Login":"Register"}</h2>
             <form onSubmit={toggle ? loginSubmitHandler: registerSubmitHandler}>
@@ -49,6 +48,5 @@ export const Login = ({setUserID}) => {
             </form>
             <p onClick={Toggle}>{toggle ? "Register Account":"Login"}</p>
         </div>
-
     )
 }

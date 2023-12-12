@@ -24,9 +24,13 @@ function App() {
     setCalories(data)
   }
 
+
   useEffect(() => {
     fetchCalories(ingredient)
+    
   }, [])
+
+
 
 
   if (!calories || !basket) return (
