@@ -5,9 +5,10 @@ import { Basket } from './components/Basket'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { MenuPage } from './pages/MenuPage'
-import { MenuItemPage } from './pages/MenuItemPage';
-import { CheckoutPage } from './pages/CheckoutPage';
-import Login from './components/Login';
+import { MenuItemPage } from './pages/MenuItemPage'
+import { CheckoutPage } from './pages/CheckoutPage'
+import { Login } from './components/Login'
+import { Nav } from './components/Nav'
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
   const [calories, setCalories] = useState([""])
   const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
-  
+
   const fetchCalories = async (ingredient) => {
     const response = await fetch('http://localhost:4000/nutrition')
     const data = await response.json()
@@ -38,6 +39,8 @@ function App() {
 
   return (
     <div className="App">
+      <Nav />
+
       <Basket
         basket={basket}
       />
@@ -68,7 +71,7 @@ function App() {
       </BrowserRouter>
 
 
-      {userID == "" && <Login setUserID={setUserID}/>}
+      {userID == "" && <Login setUserID={setUserID} />}
 
     </div>
   )
