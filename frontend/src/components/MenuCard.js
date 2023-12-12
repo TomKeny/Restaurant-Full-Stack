@@ -6,9 +6,9 @@ import React from "react"
 
 //Styling is a must!!
 
-const MenuCard = ({item}) => {
+export const MenuCard = ({ item }) => {
 
-    return(
+    return (
         <>
             <img src={item.image}></img>
             <h2>{item.name}{item.IDnumber}</h2>
@@ -17,5 +17,3 @@ const MenuCard = ({item}) => {
         </>
     )
 }
-
-export default MenuCard
