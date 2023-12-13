@@ -6,16 +6,21 @@ import React from "react"
 
 //Styling is a must!!
 
-const MenuCard = ({item}) => {
+export const MenuCard = ({ item, addToCart }) => {
 
-    return(
-        <>
-            <img src={item.image}></img>
-            <h2>{item.name}{item.IDnumber}</h2>
-            <h3>{item.description}</h3>
-            <h3>{item.price}</h3>
-        </>
+    return (
+        <div class="m-5 p-5 text-center border border-gray-600">
+            {/* IMAGE GOES HERE */}
+            {/* <img src={item.image}></img> */}
+            <h2 className="mb-3 text-xl font-semibold">{item.FoodName}</h2>
+            <h3 className="mb-3 italic">{item.Description}</h3>
+            <h3 className="mb-3">£{item.Price}</h3>
+            <button class="bg-transparent hover:bg-gold text-gold font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent"
+                onClick={() => addToCart(item)}
+            >
+                Add to cart
+            </button>
+            {/* ADD WAY TO ADD MORE THAN 1 ITEM */}
+        </div>
     )
 }
-
-export default MenuCard
