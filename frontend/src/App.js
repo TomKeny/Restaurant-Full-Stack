@@ -11,6 +11,7 @@ import { CheckoutPage } from './pages/CheckoutPage';
 import Login from './components/Login';
 import getItems from './api/getItems';
 import { Nav } from './components/Nav'
+import { Footer } from './components/Footer';
 
 
 function App() {
@@ -27,18 +28,18 @@ function App() {
     setCalories(data)
   }
 
-  async function populate () {
+  async function populate() {
     let response = await getItems("item", {})
     if (response.length == 0) {
       PopulateMenuItems()
       // get items data and run a calorie fetch for each item
-      
+
     }
   }
- 
+
   useEffect(() => {
     // fetchCalories() // put into populate so it only runs once
-    populate()   
+    populate()
   }, [])
 
 
@@ -53,14 +54,16 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
-      
+    <div className="text-white">
+
+
       <Basket
         basket={basket}
       />
 
       <BrowserRouter>
+
+        <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
         <Routes>
           <Route
             path='/'
@@ -81,17 +84,19 @@ function App() {
           />
 
         </Routes>
+
+        <Footer />
       </BrowserRouter>
 
 
-      {loginVisible && (userID === "" ? <Login setUserID={setUserID}/>: 
-      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray"}}>
-        <h3 style={{margin: 0, marginRight: 5, fontWeight: "bold", float:"left"}}>{userID.Username}</h3>
-        <p onClick={() => setUserID("")} style={{margin: 0, float:"left"}}>Log Out</p>
+      {loginVisible && (userID === "" ? <Login setUserID={setUserID} /> :
+        <div style={{ position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray" }}>
+          <h3 style={{ margin: 0, marginRight: 5, fontWeight: "bold", float: "left" }}>{userID.Username}</h3>
+          <p onClick={() => setUserID("")} style={{ margin: 0, float: "left" }}>Log Out</p>
         </div>)}
 
 
-    </div>
+    </div >
   )
 }
 
