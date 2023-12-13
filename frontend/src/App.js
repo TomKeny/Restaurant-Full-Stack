@@ -8,9 +8,12 @@ import { HomePage } from './pages/HomePage';
 import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CheckoutPage } from './pages/CheckoutPage';
+import Login from './components/Login';
+
 import getItems from './api/getItems';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
+import { ContactUsPage } from './pages/ContactUs';
 
 
 function App() {
@@ -99,6 +102,11 @@ function App() {
           <Route
             path='/checkout'
             element={<CheckoutPage />}
+          />
+
+          <Route
+            path='/contactus'
+            element={<ContactUsPage />}
           />
 
         </Routes>

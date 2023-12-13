@@ -11,6 +11,7 @@ import addItem from '../api/addItem';
 const navigation = [
     { name: 'Home', href: '/', current: true },
     { name: 'Menu', href: '/menu', current: false },
+    { name: 'ContactUs', href: '/contactus', current: false },
 ]
 
 function classNames(...classes) {
