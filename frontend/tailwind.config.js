@@ -5,9 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // fontFamily: {
-      //   josefinSans: ['Josefin Sans', 'sans-serif']
-      // },
       colors: {
         'fancy-extra-dark-blue': '#080b0e',
         'fancy-dark-blue': '#101418',

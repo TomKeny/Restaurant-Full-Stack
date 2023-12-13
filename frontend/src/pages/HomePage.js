@@ -9,7 +9,7 @@ import image4 from "../images/pexels-leonardo-luz-13999216.jpg";
 export const HomePage = () => {
 
     return (
-        <div className="bg-fancy-dark-blue">
+        <div>
 
             <section>
                 <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
@@ -40,38 +40,18 @@ export const HomePage = () => {
 
                                 <Link
                                     to="/menu"
-                                    // className="mt-8 text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
-                                    className="mt-8 inline-block px-12 py-3 text-lg font-medium text-green-600 hover:bg-transparent hover:text-yellow-600 focus:outline-none active:text-yellow-600"
+                                    className="mt-8 inline-block py-3 text-lg font-medium text-fancy-extra-dark-blue hover:text-white hover:underline focus:outline-none"
                                 >
                                     See our menu
                                 </Link>
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* // GALLERY OF FOOD IMAGES TO GO HERE */}
-            <div className=" dark:bg-gray-800 h-screen h-full py-6 sm:py-8 lg:py-12">
+            <div className="h-full py-6 sm:py-8 lg:py-12">
                 <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-                    <div className="mb-4 flex items-center justify-between gap-8 sm:mb-8 md:mb-12">
-                        <div className="flex items-center gap-12">
-                            <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl dark:text-white">Gallery</h2>
-
-                            <p className="hidden max-w-screen-sm text-gray-500 dark:text-gray-300 md:block">
-                                text here
-                            </p>
-                        </div>
-
-
-                    </div>
-
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
                         {/* <!-- image - start --> */}
                         <a href="#"
