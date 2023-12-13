@@ -15,7 +15,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export const Nav = () => {
+export const Nav = ({ setLoginVisible, loginVisible }) => {
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -79,7 +79,7 @@ export const Nav = () => {
 
 
                                 {/* Profile dropdown */}
-                                <Menu as="div" className="relative ml-3">
+                                <Menu as="div" className="relative ml-3" onClick={() => { loginVisible ? setLoginVisible(false) : setLoginVisible(true) }}>
                                     <div>
                                         <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />

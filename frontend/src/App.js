@@ -1,51 +1,69 @@
 import './App.css';
 
-import { useState, useEffect } from 'react';
-import { Basket } from './components/Basket';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
-import { MenuPage } from './pages/MenuPage';
+import { useState, useEffect } from 'react'
+import { Basket } from './components/Basket'
+import { PopulateMenuItems } from './api/PopulateMenuItems'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HomePage } from './pages/HomePage'
+import { MenuPage } from './pages/MenuPage'
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CheckoutPage } from './pages/CheckoutPage';
-import { Login } from './components/Login';
-import { Nav } from './components/Nav';
+import Login from './components/Login';
+import getItems from './api/getItems';
+import { Nav } from './components/Nav'
 import { Footer } from './components/Footer';
 
 
 function App() {
 
-  // const [basket, setBasket] = useState('item one')
-  // const [calories, setCalories] = useState([""])
-  // const [ingredient, setIngredient] = useState('brisket')
-  // const [userID, setUserID] = useState("")
+  const [calories, setCalories] = useState([""])
+  const [basket, setBasket] = useState('item one')
+  const [ingredient, setIngredient] = useState('brisket')
+  const [userID, setUserID] = useState("")
+  const [loginVisible, setLoginVisible] = useState(false)
 
-  // const fetchCalories = async (ingredient) => {
-  //   const response = await fetch('http://localhost:4000/nutrition')
-  //   const data = await response.json()
-  //   setCalories(data)
-  // }
+  const fetchCalories = async () => {
+    const response = await fetch('http://localhost:4000/nutrition')
+    const data = await response.json()
+    setCalories(data)
+  }
 
-  // useEffect(() => {
-  //   fetchCalories(ingredient)
-  // }, [])
+  async function populate() {
+    let response = await getItems("item", {})
+    if (response.length == 0) {
+      PopulateMenuItems()
+      // get items data and run a calorie fetch for each item
+
+    }
+  }
+
+  useEffect(() => {
+    // fetchCalories() // put into populate so it only runs once
+    populate()
+  }, [])
 
 
-  // if (!calories || !basket) return (
-  //   <div>
-  //     <h1>loading...</h1>
-  //   </div>
-  // )
+
+
+  if (!basket) return (
+    <div>
+      <h1>loading...</h1>
+    </div>
+  )
 
 
 
   return (
-    <div className="App text-white">
+    <div className="text-white">
 
-      {/* <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p> */}
+
+      <Basket
+        basket={basket}
+      />
 
       <BrowserRouter>
 
-        <Nav />
+        <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
         <Routes>
           <Route
             path='/'
@@ -71,10 +89,14 @@ function App() {
       </BrowserRouter>
 
 
-      {/* {userID == "" ? <Login setUserID={setUserID} /> : <h3 style={{ position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "lightGrey" }}>{userID.Username}</h3>} */}
+      {loginVisible && (userID === "" ? <Login setUserID={setUserID} /> :
+        <div style={{ position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray" }}>
+          <h3 style={{ margin: 0, marginRight: 5, fontWeight: "bold", float: "left" }}>{userID.Username}</h3>
+          <p onClick={() => setUserID("")} style={{ margin: 0, float: "left" }}>Log Out</p>
+        </div>)}
 
 
-    </div>
+    </div >
   )
 }
 

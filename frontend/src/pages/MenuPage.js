@@ -1,21 +1,42 @@
-import { MenuCard } from '../components/MenuCard';
+import { useState, useEffect } from 'react'
+import getItems from '../api/getItems'
+
 
 export const MenuPage = () => {
 
-    // This is the menu page, it will have a list of all the items in our menu, each item will be clickable and go to a new menuitempage
+    const [menu, setMenu] = useState([])
+
+    const getAndSetMenu = async () => {
+        const data = await getItems('item', {})
+        setMenu(data)
+    }
+
+    useEffect(() => {
+        getAndSetMenu()
+    }, [])
+
+    if (!menu) return (
+        <div>
+            <h1>loading menu...</h1>
+        </div>
+    )
     return (
-        <div className="bg-fancy-dark-blue">
-            <h1>Our Menu</h1>
+        <div>
+            <h1>Menu Page</h1>
+            <br></br>
+            {/* calorie info */}
+            {/* <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p> */}
 
-            {/* dummy data */}
-            <ul>
-                {
-                    dummyData.map((item, index) => (
-                        <MenuCard item={item} />
-                    ))
-                }
-
-            </ul>
+            {menu.map(el => {
+                return (
+                    <div>
+                        <h3>{el.FoodName}</h3>
+                        <h4>£{el.Price}</h4>
+                        <p><i>{el.Description}</i></p>
+                        <br></br>
+                    </div>
+                )
+            })}
         </div>
     )
 }
