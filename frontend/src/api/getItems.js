@@ -2,7 +2,9 @@ const API_URL = `http://localhost:4000`
 
 
 const getItems = async (DB, condition) => {
-    let response = await fetch(`${API_URL}/menu/items/${encodeURIComponent(DB)}/${encodeURIComponent(JSON.stringify(condition))}`, {
+    console.log("fetching from " + DB)
+     let response = await fetch(`${API_URL}/menu/items/${encodeURIComponent(DB)}/${encodeURIComponent(JSON.stringify(condition))}`, {
+
         method: "GET",
         headers: {
             "Content-Type": "application/json"

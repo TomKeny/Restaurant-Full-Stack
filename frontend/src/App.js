@@ -21,8 +21,6 @@ function App() {
 
   const [cartItems, setCartItems] = useState([])
   const [userID, setUserID] = useState("")
-  const [loginVisible, setLoginVisible] = useState(false)
-
 
   async function populate () {
     let response = await getItems("item", {})
@@ -57,6 +55,12 @@ function App() {
     if (cartItems) {
       setCartItems(JSON.parse(cartItems));
     }
+
+    const userID = localStorage.getItem("userID");
+    if (userID != "undefined") {
+      setUserID(JSON.parse(userID));
+    }
+
   }, []);
 
   // set cart in local storage
@@ -64,17 +68,23 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  useEffect(() => {
+  localStorage.setItem("userID", JSON.stringify(userID))
+  console.log(userID)
+  }, [userID]);
+
   if (!cartItems) return (
       <div>
         <h1>loading...</h1>
       </div>
     )
+
   return (
     <div className="text-white bg-fancy-dark-blue">
 
       <BrowserRouter>
 
-        <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible} cartItems={cartItems} />
+        <Nav userID={userID} setUserID={setUserID} cartItems={cartItems} />
         <Routes>
           <Route
             path='/'
@@ -103,13 +113,6 @@ function App() {
 
         <Footer />
       </BrowserRouter>
-
-
-      {loginVisible && (userID === "" ? <Login setUserID={setUserID} /> :
-        <div style={{ position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray" }}>
-          <h3 style={{ margin: 0, marginRight: 5, fontWeight: "bold", float: "left" }}>{userID.Username}</h3>
-          <p onClick={() => setUserID("")} style={{ margin: 0, float: "left" }}>Log Out</p>
-        </div>)}
 
 
     </div >
