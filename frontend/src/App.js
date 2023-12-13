@@ -18,7 +18,6 @@ function App() {
 
 
   const [cartItems, setCartItems] = useState([])
-  const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
   const [loginVisible, setLoginVisible] = useState(false)
 
@@ -47,17 +46,7 @@ function App() {
   //
   //
 
-  const fetchCalories = async () => {
-    const response = await fetch('http://localhost:4000/nutrition')
-    const data = await response.json()
-    setCalories(data)
-  }
-
-  if (!basket) return (
-    <div>
-      <h1>loading...</h1>
-    </div>
-  )
+  
 
   // get cart from local storage
   useEffect(() => {
@@ -73,7 +62,11 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-
+  if (!cartItems) return (
+      <div>
+        <h1>loading...</h1>
+      </div>
+    )
   return (
     <div className="text-white bg-fancy-dark-blue">
 
