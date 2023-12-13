@@ -5,14 +5,43 @@ import getItems from '../api/getItems'
 export const MenuPage = () => {
 
     const [menu, setMenu] = useState([])
+    const [calories, setCalories] = useState([])
+
+    const fetchCalories = async (query) => {
+        const url = 'http://localhost:4000/nutrition/' + query
+        console.log(url)
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            // body: JSON.stringify(query)
+        })
+        const data = await response.json()
+        // console.log(`data: ${data}`)
+        // // update calories
+        const copy = [...calories]
+        copy.push(data)
+        setCalories(copy)
+    }
 
     const getAndSetMenu = async () => {
         const data = await getItems('item', {})
         setMenu(data)
     }
+    const getCalorieInfo = () => {
+        console.log(menu)
+        // run a calorie fetch for each item
+        menu.map((el, index) => {
+            const query = el.ServingSize + " " + el.FoodName
+            console.log(query)
+            fetchCalories(query)
+        })
+    }
 
     useEffect(() => {
         getAndSetMenu()
+        getCalorieInfo()
     }, [])
 
     if (!menu) return (
@@ -21,23 +50,25 @@ export const MenuPage = () => {
         </div>
     )
     return (
-        <div>
-            <h1>Menu Page</h1>
-            <br></br>
-            {/* calorie info */}
-            {/* <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p> */}
+        <>
+            {calories}
+        </>
+        // <div>
+        //     <h1>Menu Page</h1>
+        //     <br></br>
 
-            {menu.map(el => {
-                return (
-                    <div>
-                        <h3>{el.FoodName}</h3>
-                        <h4>£{el.Price}</h4>
-                        <p><i>{el.Description}</i></p>
-                        <br></br>
-                    </div>
-                )
-            })}
-        </div>
+        //     {menu.map((el, index) => {
+        //         return (
+        //             <div>
+        //                 <h3><strong>{el.FoodName}</strong></h3>
+        //                 <h4>£{el.Price}</h4>
+        //                 <p><i>{el.Description}</i></p>
+        //                 {/* <p>{`${calories[index].calories} calories`}</p> */}
+        //                 <br></br>
+        //             </div>
+        //         )
+        //     })}
+        // </div>
     )
 }
 

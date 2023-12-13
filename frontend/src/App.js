@@ -15,43 +15,27 @@ import { Nav } from './components/Nav'
 
 function App() {
 
-  const [calories, setCalories] = useState([""])
   const [basket, setBasket] = useState('item one')
   const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
   const [loginVisible, setLoginVisible] = useState(false)
 
-  const fetchCalories = async () => {
-    const response = await fetch('http://localhost:4000/nutrition')
-    const data = await response.json()
-    setCalories(data)
-  }
-
   async function populate () {
     let response = await getItems("item", {})
     if (response.length == 0) {
       PopulateMenuItems()
-      // get items data and run a calorie fetch for each item
-      
     }
   }
  
   useEffect(() => {
-    // fetchCalories() // put into populate so it only runs once
     populate()   
   }, [])
-
-
-
 
   if (!basket) return (
     <div>
       <h1>loading...</h1>
     </div>
   )
-
-
-
   return (
     <div className="App">
       <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>

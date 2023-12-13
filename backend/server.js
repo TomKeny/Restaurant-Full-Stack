@@ -14,9 +14,12 @@ app.use(express.json()) // parse incomming data
 app.use('/menu', menuRoutes)
 
 // Backend proxy that calls the Nutrition API on behalf of the front-end application
-const API_URL = process.env.API_URL
 const API_KEY = process.env.API_KEY
-app.get('/nutrition', async (req, res) => {
+app.get('/nutrition/:query', async (req, res) => {
+
+    const query = req.params
+    console.log(query)
+    const API_URL = "https://api.api-ninjas.com/v1/nutrition?query=" + query
   
     axios.get(API_URL, {
         headers: {
