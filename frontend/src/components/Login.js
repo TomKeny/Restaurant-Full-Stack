@@ -37,8 +37,8 @@ const Login = ({ setUserID }) => {
     return (
         <div id="LogginBlock" style={{ position: "fixed", right: 10, top: 10, padding: "5px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray" }}>
             <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler}>
-                <label for="Username" style={{ display: "inline-block", width: 80, marginTop: 5 }}>Username</label>
-                <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "lightgray", color: "black" }}></input>
+                <label for="Username" >Username</label>
+                <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} ></input>
                 <br></br>
                 <label for="Password" style={{ display: "inline-block", width: 80, marginTop: 5 }}>Password</label>
                 <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "lightgray", color: "black" }}></input>
