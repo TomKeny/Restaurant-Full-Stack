@@ -4,7 +4,7 @@ const User = require("../models/user")
 
 let DataBase
 
-function GetDB (DB) {
+function GetDB(DB) {
     switch (DB) {
         case "item":
             DataBase = Item
@@ -16,15 +16,15 @@ function GetDB (DB) {
             DataBase = User
             break
         default:
-            Database = User
+            DataBase = User
     }
 }
 
-async function getItems (req,res) {
+async function getItems(req, res) {
     const DB = req.params.DB
     const condition = req.params.condition
     GetDB(DB)
-    
+
     const Condition = await JSON.parse(condition)
 
     const items = await DataBase.find(Condition)
@@ -32,7 +32,7 @@ async function getItems (req,res) {
     res.status(200).json(items)
 }
 
-async function getItem (req,res) {
+async function getItem(req, res) {
     const id = req.params.id
     const DB = req.params.DB
     GetDB(DB)
@@ -42,7 +42,7 @@ async function getItem (req,res) {
     res.status(200).json(item)
 }
 
-async function createItem (req,res) {
+async function createItem(req, res) {
     const { DB, Object } = req.body
     GetDB(DB)
 
@@ -68,7 +68,7 @@ async function createItem (req,res) {
     })
 }
 
-async function editItem (req,res) {
+async function editItem(req, res) {
     const { id } = req.params
     const { DB, Update } = req.body
     GetDB(DB)
@@ -80,10 +80,10 @@ async function editItem (req,res) {
     })
 }
 
-async function deleteItem (req,res) {
+async function deleteItem(req, res) {
     const { id } = req.params
     const { DB } = req.body
-    GetDB(DB)   
+    GetDB(DB)
 
     const deletedItem = await DataBase.findByIdAndDelete(id)
     res.status(200).json({
