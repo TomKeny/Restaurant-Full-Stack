@@ -128,9 +128,9 @@ export const Nav = ({ userID, setUserID, cartItems }) => {
                                                 {({ active }) => (
                                                     <>
                                                         <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler} style={{textAlign: "center"}}>
-                                                        <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "rgb(245,245,245)", marginTop: 5}}></input>
+                                                        <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", marginTop: 5}}></input>
                                                         <br></br>
-                                                        <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "rgb(245,245,245)", marginTop: 5}}></input>
+                                                        <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", marginTop: 5}}></input>
                                                         <br></br>
                                                         <button
                                                             style={{marginLeft: "auto", marginRight: "auto"}}
