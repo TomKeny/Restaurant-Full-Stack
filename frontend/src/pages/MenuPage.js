@@ -27,19 +27,18 @@ export const MenuPage = () => {
 
     const getAndSetMenu = async () => {
         const data = await getItems('item', {})
-        setMenu(data)
+        await setMenu(data)
     }
     const getCalorieInfo = () => {
-        console.log(menu)
         // run a calorie fetch for each item
-        menu.map((el, index) => {
-            const query = el.ServingSize + " " + el.FoodName
+        menu.forEach((el, index) => {
+            const query = (el.ServingSize + " " + el.FoodName).toString()
             console.log(query)
             fetchCalories(query)
         })
     }
 
-    useEffect(() => {
+    useEffect(() => {  
         getAndSetMenu()
         getCalorieInfo()
     }, [])
@@ -50,25 +49,22 @@ export const MenuPage = () => {
         </div>
     )
     return (
-        <>
-            {calories}
-        </>
-        // <div>
-        //     <h1>Menu Page</h1>
-        //     <br></br>
+        <div>
+            <h1>Menu Page</h1>
+            <br></br>
 
-        //     {menu.map((el, index) => {
-        //         return (
-        //             <div>
-        //                 <h3><strong>{el.FoodName}</strong></h3>
-        //                 <h4>£{el.Price}</h4>
-        //                 <p><i>{el.Description}</i></p>
-        //                 {/* <p>{`${calories[index].calories} calories`}</p> */}
-        //                 <br></br>
-        //             </div>
-        //         )
-        //     })}
-        // </div>
+            {menu.map((el, index) => {
+                return (
+                    <div>
+                        <h3><strong>{el.FoodName}</strong></h3>
+                        <h4>£{el.Price}</h4>
+                        <p><i>{el.Description}</i></p>
+                        {/* <p>{`${calories[index].calories} calories`}</p> */}
+                        <br></br>
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 
