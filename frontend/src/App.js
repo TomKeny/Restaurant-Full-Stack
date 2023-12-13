@@ -16,12 +16,18 @@ import { Footer } from './components/Footer';
 
 function App() {
 
-  const [calories, setCalories] = useState([""])
+
   const [cartItems, setCartItems] = useState([])
-  const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
   const [loginVisible, setLoginVisible] = useState(false)
 
+
+  async function populate () {
+    let response = await getItems("item", {})
+    if (response.length == 0) {
+      PopulateMenuItems()
+    }
+  }
 
 
   // add to cart function
@@ -40,28 +46,11 @@ function App() {
   //
   //
 
-  const fetchCalories = async () => {
-    const response = await fetch('http://localhost:4000/nutrition')
-    const data = await response.json()
-    setCalories(data)
-  }
-
-  async function populate() {
-    let response = await getItems("item", {})
-    if (response.length == 0) {
-      PopulateMenuItems()
-      // get items data and run a calorie fetch for each item
-
-    }
-  }
-
-  useEffect(() => {
-    // fetchCalories() // put into populate so it only runs once
-    populate()
-  }, [])
+  
 
   // get cart from local storage
   useEffect(() => {
+    populate()  
     const cartItems = localStorage.getItem("cartItems");
     if (cartItems) {
       setCartItems(JSON.parse(cartItems));
@@ -73,6 +62,11 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  if (!cartItems) return (
+      <div>
+        <h1>loading...</h1>
+      </div>
+    )
   return (
     <div className="text-white bg-fancy-dark-blue">
       <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
