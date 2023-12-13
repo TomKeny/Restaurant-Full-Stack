@@ -16,7 +16,7 @@ import { Nav } from './components/Nav'
 function App() {
 
   const [calories, setCalories] = useState([""])
-  const [basket, setBasket] = useState('item one')
+  const [basket, setBasket] = useState([])
   const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
   const [loginVisible, setLoginVisible] = useState(false)
@@ -58,6 +58,7 @@ function App() {
       
       <Basket
         basket={basket}
+        setBasket={setBasket}
       />
 
       <BrowserRouter>
