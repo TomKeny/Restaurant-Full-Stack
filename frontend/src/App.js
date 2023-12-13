@@ -75,6 +75,7 @@ function App() {
 
   return (
     <div className="text-white bg-fancy-dark-blue">
+      <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
 
       <BrowserRouter>
 
