@@ -1,25 +1,44 @@
 import './App.css';
 
-import { useState, useEffect } from 'react'
-import { Basket } from './components/Basket'
-import { PopulateMenuItems } from './api/PopulateMenuItems'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
-import { MenuPage } from './pages/MenuPage'
+import { useState, useEffect } from 'react';
+import { Cart } from './components/Cart';
+import { PopulateMenuItems } from './api/PopulateMenuItems';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import Login from './components/Login';
 import getItems from './api/getItems';
-import { Nav } from './components/Nav'
+import { Nav } from './components/Nav';
+import { Footer } from './components/Footer';
 
 
 function App() {
 
   const [calories, setCalories] = useState([""])
-  const [basket, setBasket] = useState([])
+  const [cartItems, setCartItems] = useState([])
   const [ingredient, setIngredient] = useState('brisket')
   const [userID, setUserID] = useState("")
   const [loginVisible, setLoginVisible] = useState(false)
+
+
+
+  // add to cart function
+  const addToCart = (item) => {
+    setCartItems([
+      ...cartItems,
+      item
+    ])
+  }
+
+  // remove from cart function
+  // 
+  // 
+
+  // clear  function
+  //
+  //
 
   const fetchCalories = async () => {
     const response = await fetch('http://localhost:4000/nutrition')
@@ -27,41 +46,39 @@ function App() {
     setCalories(data)
   }
 
-  async function populate () {
+  async function populate() {
     let response = await getItems("item", {})
     if (response.length == 0) {
       PopulateMenuItems()
       // get items data and run a calorie fetch for each item
-      
+
     }
   }
- 
+
   useEffect(() => {
     // fetchCalories() // put into populate so it only runs once
-    populate()   
+    populate()
   }, [])
 
+  // get cart from local storage
+  useEffect(() => {
+    const cartItems = localStorage.getItem("cartItems");
+    if (cartItems) {
+      setCartItems(JSON.parse(cartItems));
+    }
+  }, []);
 
-
-
-  if (!basket) return (
-    <div>
-      <h1>loading...</h1>
-    </div>
-  )
-
-
+  // set cart in local storage
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
-    <div className="App">
-      <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
-      
-      <Basket
-        basket={basket}
-        setBasket={setBasket}
-      />
+    <div className="text-white bg-fancy-dark-blue">
 
       <BrowserRouter>
+
+        <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible} cartItems={cartItems} />
         <Routes>
           <Route
             path='/'
@@ -69,7 +86,7 @@ function App() {
           />
           <Route
             path='/menu'
-            element={<MenuPage />}
+            element={<MenuPage addToCart={addToCart} />}
           />
           <Route
             path='/menuitem'
@@ -82,17 +99,19 @@ function App() {
           />
 
         </Routes>
+
+        <Footer />
       </BrowserRouter>
 
 
-      {loginVisible && (userID === "" ? <Login setUserID={setUserID}/>: 
-      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray"}}>
-        <h3 style={{margin: 0, marginRight: 5, fontWeight: "bold", float:"left"}}>{userID.Username}</h3>
-        <p onClick={() => setUserID("")} style={{margin: 0, float:"left"}}>Log Out</p>
+      {loginVisible && (userID === "" ? <Login setUserID={setUserID} /> :
+        <div style={{ position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray" }}>
+          <h3 style={{ margin: 0, marginRight: 5, fontWeight: "bold", float: "left" }}>{userID.Username}</h3>
+          <p onClick={() => setUserID("")} style={{ margin: 0, float: "left" }}>Log Out</p>
         </div>)}
 
 
-    </div>
+    </div >
   )
 }
 
