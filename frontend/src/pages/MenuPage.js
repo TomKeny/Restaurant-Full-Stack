@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import getItems from '../api/getItems'
+import { MenuCard } from '../components/MenuCard'
 
-
-export const MenuPage = () => {
+export const MenuPage = ({ addToCart }) => {
 
     const [menu, setMenu] = useState([])
 
@@ -22,22 +22,18 @@ export const MenuPage = () => {
     )
     return (
         <div>
-            <h1>Menu Page</h1>
+            <h1 className="text-4xl text-center m-5">Menu</h1>
             <br></br>
             {/* calorie info */}
             {/* <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p> */}
 
-            {menu.map(el => {
+            {/* // pass down image and calorie info to card component */}
+
+            {menu.map(item => {
                 return (
-                    <div>
-                        <h3>{el.FoodName}</h3>
-                        <h4>£{el.Price}</h4>
-                        <p><i>{el.Description}</i></p>
-                        <br></br>
-                    </div>
+                    <MenuCard item={item} addToCart={addToCart} />
                 )
             })}
         </div>
     )
 }
-
