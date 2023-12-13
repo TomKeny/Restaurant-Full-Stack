@@ -1,7 +1,7 @@
 export const ContactUsPage = () => {
     return (
-        <div>
-            <div>
+        <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="m-5 p-5 text-center border border-gray-600">
                 <h1 className="text-4xl text-center m-5">Contact Us</h1>
                 <br></br>
                 <iframe 
