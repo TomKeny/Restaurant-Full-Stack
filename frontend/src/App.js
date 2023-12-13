@@ -54,7 +54,7 @@ function App() {
     }
 
     const userID = localStorage.getItem("userID");
-    if (userID != "undefined") {
+    if (userID != "undefined" && userID !== undefined) {
       setUserID(JSON.parse(userID));
     }
 
