@@ -1,6 +1,6 @@
 const API_URL = `http://localhost:4000`
 
-export const deleteItem = async (DB, id) => {
+const deleteItem = async (DB, id) => {
     const response = await fetch(`${API_URL}/todos/item/${id}`, {
         method: 'delete',
         body: JSON.stringify({
@@ -13,3 +13,5 @@ export const deleteItem = async (DB, id) => {
     const data = response.json()
     return data
 }
+
+export default deleteItem

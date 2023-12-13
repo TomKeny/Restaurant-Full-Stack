@@ -2,43 +2,50 @@ import './App.css';
 
 import { useState, useEffect } from 'react'
 import { Basket } from './components/Basket'
+import { PopulateMenuItems } from './api/PopulateMenuItems'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { MenuPage } from './pages/MenuPage'
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import Login from './components/Login';
-import Counter from './components/Counter';
-import Button from './components/Button';
+
+import getItems from './api/getItems';
+import { Nav } from './components/Nav'
 
 
 function App() {
 
-  const [basket, setBasket] = useState('item one')
   const [calories, setCalories] = useState([""])
+  const [basket, setBasket] = useState('item one')
   const [ingredient, setIngredient] = useState('brisket')
+  const [userID, setUserID] = useState("")
+  const [loginVisible, setLoginVisible] = useState(false)
 
-  // const API_KEY = process.env.REACT_APP_API_KEY
-
-  const fetchCalories = async (ingredient) => {
-    let url = "https://api.api-ninjas.com/v1/nutrition?query=" + ingredient
-    console.log(url)
-    const response = await fetch(url, {
-      headers: {
-        "X-Api-Key": "I1ag09jAflT2yzafLPY2rg==uQsRfm7qfrirU7eq"
-      }
-    })
+  const fetchCalories = async () => {
+    const response = await fetch('http://localhost:4000/nutrition')
     const data = await response.json()
     setCalories(data)
   }
 
-
+  async function populate () {
+    let response = await getItems("item", {})
+    if (response.length == 0) {
+      PopulateMenuItems()
+      // get items data and run a calorie fetch for each item
+      
+    }
+  }
+ 
   useEffect(() => {
-    fetchCalories(ingredient)
+    // fetchCalories() // put into populate so it only runs once
+    populate()   
   }, [])
 
 
-  if (!calories || !basket) return (
+
+
+  if (!basket) return (
     <div>
       <h1>loading...</h1>
     </div>
@@ -48,10 +55,11 @@ function App() {
 
   return (
     <div className="App">
+      <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
+      
       <Basket
         basket={basket}
       />
-      <p>{`${ingredient} calories: ${calories[0].calories}`}</p>
 
       <BrowserRouter>
         <Routes>
@@ -77,11 +85,12 @@ function App() {
       </BrowserRouter>
 
 
-      <Login />
-      <div>
-        <Counter count={0} />
-        <Button text={"TEST BUTTON"} />
-      </div>
+      {loginVisible && (userID === "" ? <Login setUserID={setUserID}/>: 
+      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray"}}>
+        <h3 style={{margin: 0, marginRight: 5, fontWeight: "bold", float:"left"}}>{userID.Username}</h3>
+        <p onClick={() => setUserID("")} style={{margin: 0, float:"left"}}>Log Out</p>
+        </div>)}
+
 
     </div>
   )

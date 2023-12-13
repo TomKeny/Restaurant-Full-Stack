@@ -1,6 +1,6 @@
 const API_URL = `http://localhost:4000`
 
-export const updateItem = async (DB, id, Update) => {
+const updateItem = async (DB, id, Update) => {
 
     const response = await fetch(`${API_URL}/menu/item/${id}`, {
         
@@ -17,3 +17,5 @@ export const updateItem = async (DB, id, Update) => {
     const json = await response.json()
     return json
 }
+
+export default updateItem

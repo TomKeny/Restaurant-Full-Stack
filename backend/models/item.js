@@ -9,7 +9,15 @@ const itemSchema = new Schema({
         type: String,
         required: true
     },
+    ServingSize: {
+        type: String,
+        required: true
+    },
     Price: {
+        type: Number,
+        required: true
+    },
+    Description: {
         type: String,
         required: true
     }
