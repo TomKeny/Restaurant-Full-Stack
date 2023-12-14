@@ -7,7 +7,6 @@ import { HomePage } from './pages/HomePage';
 import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CartPage } from './pages/CartPage';
-import Login from './components/Login';
 
 import getItems from './api/getItems';
 import { Nav } from './components/Nav';
