@@ -34,10 +34,13 @@ export const MenuCard = ({ item, addToCart }) => {
 
     const getTotalCalories = () => {
         let sum = 0
-        calories.map(el => {
-            sum += el.calories
-        })
-        setTotalCals(sum)
+        // calories.map(el => {
+        //     sum += el.calories
+        // })
+        for (let i = 0; i < item.Ingredients.length; i++) {
+            sum += calories[i].calories
+        }
+        setTotalCals(Math.round(sum * 100) / 100)
     }
 
     useEffect(() => {
