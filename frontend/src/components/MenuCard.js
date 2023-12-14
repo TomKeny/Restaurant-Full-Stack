@@ -9,14 +9,14 @@ import React from "react"
 export const MenuCard = ({ item, addToCart }) => {
 
     return (
-        <div class="m-5 p-5 text-center border border-gray-600">
+        <div className="m-5 p-5 text-center border border-gray-600">
             {/* IMAGE GOES HERE */}
             {/* <img src={item.image}></img> */}
             <h2 className="mb-3 text-xl font-semibold">{item.FoodName}</h2>
             <h3 className="mb-3 italic">{item.Description}</h3>
             <h3 className="mb-3">£{item.Price}</h3>
-            <button class="bg-transparent hover:bg-gold text-gold font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent"
-                onClick={() => addToCart(item)}
+            <button className="bg-transparent hover:bg-gold text-gold font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent"
+                onClick={() => addToCart(item, 1)}
             >
                 Add to cart
             </button>

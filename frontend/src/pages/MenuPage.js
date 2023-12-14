@@ -38,7 +38,7 @@ export const MenuPage = ({ addToCart }) => {
         })
     }
 
-    useEffect(() => {  
+    useEffect(() => {
         getAndSetMenu()
         getCalorieInfo()
     }, [])
