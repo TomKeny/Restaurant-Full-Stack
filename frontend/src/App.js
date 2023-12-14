@@ -13,6 +13,7 @@ import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
 import { ContactUsPage } from './pages/ContactUs';
 import { CheckoutPage } from './pages/CheckoutPage';
+import { OrderHistory } from './pages/OrderHistory';
 
 
 function App() {
@@ -154,6 +155,11 @@ function App() {
           <Route
             path='/contactus'
             element={<ContactUsPage />}
+          />
+
+          <Route
+            path='/orderhistory'
+            element={<OrderHistory userID={userID}/>}
           />
 
         </Routes>
