@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import addItem from "../api/addItem"
 
 export const CheckoutPage = ({ cartItems, setCartItems, cartSubTotal, userID}) => {
 
 	const [purchased, setPurchased] = useState(false)
-    const [purchasedItems, setPurchasedItems] = useState([...cartItems])
-    const [price, setPrice] = useState(cartSubTotal)
-
-    useEffect(() => {setPurchased(false)}, [])
+    const [purchasedItems, setPurchasedItems] = useState()
+    const [price, setPrice] = useState()
+    const [orderID, setOrderID] = useState()
     
     async function purchase() {
-        await addItem("order", {UserID: userID.UserID, ItemID: cartItems})
+        const response = await addItem("order", {UserID: userID.UserID, ItemID: cartItems})
+        setOrderID(response.Item._id)
         setPurchased(true)
         setPurchasedItems([...cartItems])
         setPrice(cartSubTotal)
@@ -18,7 +18,7 @@ export const CheckoutPage = ({ cartItems, setCartItems, cartSubTotal, userID}) =
     }
 
 	if (!purchased) {return (
-		<div className="bg-gray-100 pt-2 text-gray-700">
+		<div className="bg-gray-100 py-10 text-gray-700">
 			<h1 className="m-5 text-center text-gray-700 text-2xl font-bold">Checkout</h1>
 			<div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
 				<div className="rounded-lg md:w-2/3">
@@ -76,6 +76,7 @@ export const CheckoutPage = ({ cartItems, setCartItems, cartSubTotal, userID}) =
 			<h1 className="m-5 text-center text-gray-700 text-2xl font-bold">Checkout</h1>
             <div className="mt-6 h-full rounded-lg border bg-gray-100 p-6 shadow-md md:mt-0 md:w-11/12 ml-auto mr-auto">
                 <h1 className="text-2xl text-gray-700 font-bold text-center">Order Summary</h1>
+                <h1 className="text-sm text-gray-700 font-bold text-center">Order ID: {orderID}</h1>
                 <div className="rounded-lg md:w-1/2 mr-auto ml-auto">
 
 					{
