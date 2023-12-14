@@ -11,7 +11,8 @@ export const ContactUsPage = () => {
                     style={{ border:0}}
                     allowfullscreen="" 
                     loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">              
+                    referrerpolicy="no-referrer-when-downgrade"
+                    className="ml-auto mr-auto">              
                 </iframe>
 
                 <h2 className="mb-6 text-base font-semibold text-white">TEL: 0161 232 0000</h2>
