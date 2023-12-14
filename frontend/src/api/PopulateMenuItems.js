@@ -1,8 +1,6 @@
 import addItem from "./addItem"
 
-export let runCount = 0
-
-export const PopulateMenuItems = async () => {
+export const PopulateMenuItems = () => {
     const menuItems = [
         { name: "Miso Soup", servingSize: "250g", price: 6, description: "A classic savoury broth with tofu, seaweed, and scallions" },
         { name: "Patatas Bravas", servingSize: "100g", price: 6, description: "Crispy potatoes served with a spicy tomato sauce and aioli" },
@@ -20,5 +18,4 @@ export const PopulateMenuItems = async () => {
             Description: el.description,
         })
     })
-    runCount =+ 1
 }

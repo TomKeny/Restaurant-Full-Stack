@@ -1,32 +1,26 @@
 import './App.css';
 
-import { useState, useEffect } from 'react'
-import { Basket } from './components/Basket'
-import { PopulateMenuItems } from './api/PopulateMenuItems'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { HomePage } from './pages/HomePage'
-import { MenuPage } from './pages/MenuPage'
+import { useState, useEffect } from 'react';
+import { Cart } from './components/Cart';
+import { PopulateMenuItems } from './api/PopulateMenuItems';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import Login from './components/Login';
+
 import getItems from './api/getItems';
-import { Nav } from './components/Nav'
+import { Nav } from './components/Nav';
+import { Footer } from './components/Footer';
+import { ContactUsPage } from './pages/ContactUs';
 
 
 function App() {
 
-  const [basket, setBasket] = useState('item one')
-  const [calories, setCalories] = useState([""])
-  const [ingredient, setIngredient] = useState('brisket')
-  const [userID, setUserID] = useState("")
-  const [menu, setMenu] = useState([])
-  const [loginVisible, setLoginVisible] = useState(false)
 
-  const fetchCalories = async (ingredient) => {
-    const response = await fetch('http://localhost:4000/nutrition')
-    const data = await response.json()
-    setCalories(data)
-  }
+  const [cartItems, setCartItems] = useState([])
+  const [userID, setUserID] = useState("")
 
   async function populate () {
     let response = await getItems("item", {})
@@ -34,34 +28,63 @@ function App() {
       PopulateMenuItems()
     }
   }
- 
+
+
+  // add to cart function
+  const addToCart = (item) => {
+    setCartItems([
+      ...cartItems,
+      item
+    ])
+  }
+
+  // remove from cart function
+  // 
+  // 
+
+  // clear  function
+  //
+  //
+
+  
+
+  // get cart from local storage
   useEffect(() => {
-    fetchCalories(ingredient)
-    populate()   
-  }, [])
+    populate()  
+    const cartItems = localStorage.getItem("cartItems");
+    if (cartItems) {
+      setCartItems(JSON.parse(cartItems));
+    }
 
+    const userID = localStorage.getItem("userID");
+    if (userID != "undefined" && userID !== undefined) {
+      setUserID(JSON.parse(userID));
+    }
 
+  }, []);
 
+  // set cart in local storage
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
-  if (!calories || !basket) return (
-    <div>
-      <h1>loading...</h1>
-    </div>
-  )
+  useEffect(() => {
+  localStorage.setItem("userID", JSON.stringify(userID))
+  console.log(userID)
+  }, [userID]);
 
-
+  if (!cartItems) return (
+      <div>
+        <h1>loading...</h1>
+      </div>
+    )
 
   return (
-    <div className="App">
-      <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
-      
-      <Basket
-        basket={basket}
-      />
-
-      <p>{`${calories[0].name} calories: ${calories[0].calories}`}</p>
+    <div className="text-white bg-fancy-dark-blue">
 
       <BrowserRouter>
+
+        <Nav userID={userID} setUserID={setUserID} cartItems={cartItems} />
         <Routes>
           <Route
             path='/'
@@ -69,7 +92,7 @@ function App() {
           />
           <Route
             path='/menu'
-            element={<MenuPage />}
+            element={<MenuPage addToCart={addToCart} />}
           />
           <Route
             path='/menuitem'
@@ -81,18 +104,18 @@ function App() {
             element={<CheckoutPage />}
           />
 
+          <Route
+            path='/contactus'
+            element={<ContactUsPage />}
+          />
+
         </Routes>
+
+        <Footer />
       </BrowserRouter>
 
 
-      {loginVisible && (userID === "" ? <Login setUserID={setUserID}/>: 
-      <div style={{position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray"}}>
-        <h3 style={{margin: 0, marginRight: 5, fontWeight: "bold", float:"left"}}>{userID.Username}</h3>
-        <p onClick={() => setUserID("")} style={{margin: 0, float:"left"}}>Log Out</p>
-        </div>)}
-
-
-    </div>
+    </div >
   )
 }
 
