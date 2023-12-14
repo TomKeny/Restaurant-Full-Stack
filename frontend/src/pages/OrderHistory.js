@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
-import getItems from "../api/getItem"
+import getItems from "../api/getItems"
 
 export function OrderHistory({userID}) {
     
     const [orders, setOrders] = useState([])
 
     async function getOrders() {
-        //const response = await getItems("order", { UserID: userID })
-        //setOrders(response)
+        const response = await getItems("order", { UserID: userID.UserID})
+        setOrders(response)
     }
     useEffect(() => {
         getOrders()
@@ -26,9 +26,9 @@ export function OrderHistory({userID}) {
                         price += purchasedItems[i].Price
                     }
                     
-                    return (<>
+                    return (<div className="bg-neutral-200/40 w-2/3 mb-5 pb-5 pt-5 rounded-2xl ml-auto mr-auto">
                 <h1 className="text-sm text-gray-700 font-bold text-center">Order ID: {orderID}</h1>
-                <div className="rounded-lg md:w-1/2 mr-auto ml-auto">
+                <div className="rounded-lg md:w-3/4 mr-auto ml-auto">
 
                     {
                         purchasedItems.map((item) => {
@@ -70,7 +70,7 @@ export function OrderHistory({userID}) {
                         </div>
                     </div>
                 </div>
-                </>
+                </div>
                 )
                 })}
             </div>
