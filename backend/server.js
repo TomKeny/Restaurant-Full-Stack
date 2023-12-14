@@ -18,9 +18,7 @@ const API_KEY = process.env.API_KEY
 app.get('/nutrition/:query', async (req, res) => {
 
     const query = req.params.query
-    console.log(query)
     const API_URL = "https://api.api-ninjas.com/v1/nutrition?query=" + query
-    console.log(API_URL)
   
     axios.get(API_URL, {
         headers: {
