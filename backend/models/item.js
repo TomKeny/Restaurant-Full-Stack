@@ -20,6 +20,10 @@ const itemSchema = new Schema({
     Description: {
         type: String,
         required: true
+    },
+    Ingredients: {
+        type: Object,
+        required: true
     }
 })
 
