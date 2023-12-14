@@ -1,22 +1,54 @@
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
+import { useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Cart } from './Cart';
 import logo from '../images/logo.svg';
+import getItems from '../api/getItems';
+import addItem from '../api/addItem';
 
 const navigation = [
     { name: 'Home', href: '/', current: true },
     { name: 'Menu', href: '/menu', current: false },
+    { name: 'Contact Us', href: '/contactus', current: false },
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export const Nav = ({ setLoginVisible, loginVisible, cartItems }) => {
+export const Nav = ({ userID, setUserID, cartQuantity }) => {
 
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [toggle, setToggle] = useState(true)
 
+    async function loginSubmitHandler(e) {
+        e.preventDefault()
+
+        let response = await getItems("user", { Username: username, Password: password })
+        setUsername("")
+        setPassword("")
+        if (response.length > 0) {
+            setUserID({ UserID: response[0]._id, Username: response[0].Username })
+        }
+    }
+
+    async function registerSubmitHandler(e) {
+        e.preventDefault()
+        let response = await addItem("user", { Username: username, Password: password })
+        console.log(response)
+        let newResponse = await getItems("user", { Username: username, Password: password })
+
+        setUsername("")
+        setPassword("")
+        setUserID({ UserID: newResponse[0]._id, Username: newResponse[0].Username })
+    }
+
+    function Toggle() {
+        toggle ? setToggle(false) : setToggle(true)
+    }
 
     return (
         <Disclosure as="nav" className="bg-fancy-extra-dark-blue">
@@ -46,9 +78,9 @@ export const Nav = ({ setLoginVisible, loginVisible, cartItems }) => {
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
-                                            <a
+                                            <Link
                                                 key={item.name}
-                                                href={item.href}
+                                                to={item.href}
                                                 className={classNames(
                                                     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                     'rounded-md px-3 py-2 text-sm font-medium'
@@ -56,20 +88,20 @@ export const Nav = ({ setLoginVisible, loginVisible, cartItems }) => {
                                                 aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-                                {/* Basket icon */}
-                                <Cart cartItems={cartItems} />
+                                {/* Cart icon */}
+                                <Cart cartQuantity={cartQuantity} />
 
 
 
                                 {/* Profile dropdown */}
-                                <Menu as="div" className="relative ml-3" onClick={() => { loginVisible ? setLoginVisible(false) : setLoginVisible(true) }}>
+                                <Menu as="div" className="relative ml-3">
                                     <div>
                                         <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />
@@ -91,26 +123,48 @@ export const Nav = ({ setLoginVisible, loginVisible, cartItems }) => {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Your Profile
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <a
-                                                        href="#"
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Sign out
-                                                    </a>
-                                                )}
-                                            </Menu.Item>
+                                            {userID == "" ?
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <>
+                                                            <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler} style={{ textAlign: "center" }}>
+                                                                <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginTop: 5 }}></input>
+                                                                <br></br>
+                                                                <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginTop: 5 }}></input>
+                                                                <br></br>
+                                                                <button
+                                                                    style={{ marginLeft: "auto", marginRight: "auto" }}
+                                                                    href="#"
+                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                >
+                                                                    {toggle ? "Login" : "Register"}
+                                                                </button>
+                                                            </form>
+                                                            <p onClick={Toggle} style={{ color: "black", textAlign: "center", fontSize: "0.7em" }}>{toggle ? "Register Account" : "Login"}</p>
+
+                                                        </>
+                                                    )}
+                                                </Menu.Item> :
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <>
+                                                            <a
+                                                                href="#"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                {userID.Username}
+                                                            </a>
+                                                            <a
+                                                                onClick={() => setUserID("")}
+                                                                href="#"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Sign out
+                                                            </a>
+                                                        </>
+                                                    )}
+                                                </Menu.Item>
+                                            }
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>

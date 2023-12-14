@@ -1,78 +1,132 @@
 import './App.css';
 
 import { useState, useEffect } from 'react';
-import { Cart } from './components/Cart';
 import { PopulateMenuItems } from './api/PopulateMenuItems';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
-import { CheckoutPage } from './pages/CheckoutPage';
+import { CartPage } from './pages/CartPage';
 import Login from './components/Login';
+
 import getItems from './api/getItems';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
+import { ContactUsPage } from './pages/ContactUs';
 
 
 function App() {
 
-
   const [cartItems, setCartItems] = useState([])
+  const [cartQuantity, setCartQuantity] = useState()
+  const [cartSubTotal, setCartSubTotal] = useState()
   const [userID, setUserID] = useState("")
-  const [loginVisible, setLoginVisible] = useState(false)
 
-
-  async function populate () {
+  // populate menu items if none exist
+  async function populate() {
     let response = await getItems("item", {})
     if (response.length == 0) {
       PopulateMenuItems()
     }
   }
 
-
   // add to cart function
-  const addToCart = (item) => {
-    setCartItems([
-      ...cartItems,
-      item
-    ])
+  const addToCart = (item, quantity) => {
+
+    const isItemAlreadyInCart = cartItems.find((cartItem) => cartItem._id === item._id)
+
+    // if the item is already in the cart...
+    if (isItemAlreadyInCart) {
+
+      // update the quantity, otherwise return the item
+      setCartItems(
+        cartItems.map((cartItem) =>
+          cartItem._id === item._id
+            ? { ...cartItem, quantity: cartItem.quantity += quantity }
+            : cartItem
+        )
+      );
+    } else {
+      // if the item did not exist in the cart, add to cart
+      setCartItems([...cartItems, { ...item, quantity: quantity }]);
+    }
   }
 
   // remove from cart function
-  // 
-  // 
+  const removeFromCart = (item, quantity) => {
 
-  // clear  function
-  //
-  //
+    // update the quantity and update state
+    setCartItems(
+      cartItems.map((cartItem) =>
+        cartItem._id === item._id
+          ? { ...cartItem, quantity: item.quantity - quantity }
+          : cartItem
+      )
+    )
+  }
 
-  
-
-  // get cart from local storage
+  // populate menu if empty
   useEffect(() => {
-    populate()  
-    const cartItems = localStorage.getItem("cartItems");
-    if (cartItems) {
-      setCartItems(JSON.parse(cartItems));
+    populate()
+
+    const userID = localStorage.getItem("userID");
+    if (userID != "undefined" && userID !== undefined) {
+      setUserID(JSON.parse(userID));
     }
+
   }, []);
 
-  // set cart in local storage
+  // get cart items from local storage and update state
+  useEffect(() => {
+    const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
+    console.log('>>>>', cartItemsFromLocalStorage)
+
+
+    if (cartItemsFromLocalStorage.length) {
+      // set cart items in state
+      setCartItems(cartItemsFromLocalStorage);
+    }
+  }, [])
+
+  // if cartItems is updated in state, update cartItems in local storage
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+    setCartQuantity(
+      cartItems.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.quantity,
+        0,
+      )
+    )
+
+    setCartSubTotal(
+      cartItems.reduce(
+        (accumulator, currentValue) => accumulator + (currentValue.quantity * currentValue.Price),
+        0,
+      )
+    )
   }, [cartItems]);
 
+
+  // .....
+  useEffect(() => {
+    localStorage.setItem("userID", JSON.stringify(userID))
+    console.log(userID)
+  }, [userID]);
+
   if (!cartItems) return (
-      <div>
-        <h1>loading...</h1>
-      </div>
-    )
+    <div>
+      <h1>loading...</h1>
+    </div>
+  )
+
   return (
-    <div className="text-white bg-fancy-dark-blue">
+    <div className=" h-full text-white bg-fancy-dark-blue">
 
       <BrowserRouter>
 
-        <Nav setLoginVisible={setLoginVisible} loginVisible={loginVisible} cartItems={cartItems} />
+        <Nav userID={userID} setUserID={setUserID} cartQuantity={cartQuantity} />
+
         <Routes>
           <Route
             path='/'
@@ -88,8 +142,13 @@ function App() {
           />
 
           <Route
-            path='/checkout'
-            element={<CheckoutPage />}
+            path='/cart'
+            element={<CartPage cartItems={cartItems} cartSubTotal={cartSubTotal} addToCart={addToCart} removeFromCart={removeFromCart} />}
+          />
+
+          <Route
+            path='/contactus'
+            element={<ContactUsPage />}
           />
 
         </Routes>
@@ -98,14 +157,7 @@ function App() {
       </BrowserRouter>
 
 
-      {loginVisible && (userID === "" ? <Login setUserID={setUserID} /> :
-        <div style={{ position: "fixed", right: 10, top: 10, padding: "10px", borderRadius: "10px", backgroundColor: "rgb(21,31,45)", color: "lightGray" }}>
-          <h3 style={{ margin: 0, marginRight: 5, fontWeight: "bold", float: "left" }}>{userID.Username}</h3>
-          <p onClick={() => setUserID("")} style={{ margin: 0, float: "left" }}>Log Out</p>
-        </div>)}
-
-
-    </div >
+    </div>
   )
 }
 
