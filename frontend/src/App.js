@@ -12,6 +12,7 @@ import getItems from './api/getItems';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
 import { ContactUsPage } from './pages/ContactUs';
+import { CheckoutPage } from './pages/CheckoutPage';
 
 
 function App() {
@@ -143,6 +144,11 @@ function App() {
           <Route
             path='/cart'
             element={<CartPage cartItems={cartItems} cartSubTotal={cartSubTotal} addToCart={addToCart} removeFromCart={removeFromCart} />}
+          />
+
+          <Route
+            path='/checkout'
+            element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems} cartSubTotal={cartSubTotal} userID={userID}/>}
           />
 
           <Route
