@@ -1,4 +1,62 @@
+<<<<<<< Updated upstream
 export const Nav = ({setLoginVisible,loginVisible}) => {
+=======
+import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
+import { useState } from 'react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Cart } from './Cart';
+import logo from '../images/logo.svg';
+import getItems from '../api/getItems';
+import addItem from '../api/addItem';
+
+const navigation = [
+    { name: 'Home', href: '/', current: true },
+    { name: 'Menu', href: '/menu', current: false },
+    { name: 'ContactUs', href: '/contactus', current: false },
+]
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
+export const Nav = ({ userID, setUserID, cartItems }) => {
+
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [toggle, setToggle] = useState(true)
+
+    async function loginSubmitHandler(e) {
+        e.preventDefault()
+
+        let response = await getItems("user", { Username: username, Password: password })
+        setUsername("")
+        setPassword("")
+        if (response.length > 0) {
+            setUserID({ UserID: response[0]._id, Username: response[0].Username })
+        }
+        else if (response.length == 0) {
+            alert("Error: Invalid username and/or password")
+        }
+    }
+
+    async function registerSubmitHandler(e) {
+        e.preventDefault()
+        let response = await addItem("user", { Username: username, Password: password })
+        console.log(response)
+        let newResponse = await getItems("user", { Username: username, Password: password })
+
+        setUsername("")
+        setPassword("")
+        setUserID({ UserID: newResponse[0]._id, Username: newResponse[0].Username })
+    }
+
+    function Toggle() {
+        toggle ? setToggle(false) : setToggle(true)
+    }
+
+>>>>>>> Stashed changes
     return (
         <nav className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
