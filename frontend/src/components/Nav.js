@@ -33,6 +33,9 @@ export const Nav = ({ userID, setUserID, cartItems }) => {
         if (response.length > 0) {
             setUserID({ UserID: response[0]._id, Username: response[0].Username })
         }
+        else if (response.length == 0) {
+            alert("Error: Invalid username and/or password")
+        }
     }
 
     async function registerSubmitHandler(e) {
