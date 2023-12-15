@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect } from 'react'
+import loadingImage from '../images/Loading-PNG-Photo-export.png'
 
 //### Basic initial TEST layout, all can be changed ###
 
@@ -63,7 +64,7 @@ export const MenuCard = ({ item, addToCart }) => {
             <h2 className="mb-3 text-xl font-semibold">{item.FoodName}</h2>
             <h3 className="mb-3 italic">{item.Description}</h3>
             <h3 className="mb-3">£{item.Price}</h3>
-            <h3 className="mb-3">{totalCals} calories</h3>
+            {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3"/>:<h3 className="mb-3">{totalCals} calories</h3>}
             <button className="bg-transparent hover:bg-gold text-gold font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent"
                 onClick={() => addToCart(item, 1)}
             >

@@ -10,6 +10,9 @@ module.exports = {
         'fancy-dark-blue': '#101418',
         'grey': '#919394',
         'gold': '#8d721e'
+      },
+      animation: {
+        'spin-slow': 'spin 5s linear infinite'
       }
     },
   },
