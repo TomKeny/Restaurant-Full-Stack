@@ -1,4 +1,4 @@
-import addItem from "./addItem"
+import addItem from "../api/addItem"
 
 export const PopulateMenuItems = () => {
     const menuItems = [

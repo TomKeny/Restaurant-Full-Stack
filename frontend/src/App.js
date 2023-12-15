@@ -1,7 +1,7 @@
 import './App.css';
 
 import { useState, useEffect } from 'react';
-import { PopulateMenuItems } from './api/PopulateMenuItems';
+import { PopulateMenuItems } from './components/PopulateMenuItems';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { MenuPage } from './pages/MenuPage';

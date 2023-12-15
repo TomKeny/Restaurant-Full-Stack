@@ -17,6 +17,10 @@ const itemSchema = new Schema({
         type: String,
         required: true
     },
+    Cuisine: {
+        type: String,
+        required: true
+    },
     Ingredients: {
         type: Object,
         required: true
