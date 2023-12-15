@@ -34,6 +34,9 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
         if (response.length > 0) {
             setUserID({ UserID: response[0]._id, Username: response[0].Username })
         }
+        else if (response.length == 0) {
+            alert("Error: Invalid username and/or password")
+        }
     }
 
     async function registerSubmitHandler(e) {
@@ -155,9 +158,15 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                                             >
                                                                 {userID.Username}
                                                             </a>
+                                                            <Link
+                                                                to="/orderhistory"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Order History
+                                                            </Link>
                                                             <a
                                                                 onClick={() => setUserID("")}
-                                                                href="#"
+                                                                href="/"
                                                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                             >
                                                                 Sign out

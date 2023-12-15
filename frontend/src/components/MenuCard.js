@@ -1,4 +1,7 @@
 import React from "react"
+import { useState, useEffect } from 'react'
+import loadingImage from '../images/Loading-PNG-Photo-export.png'
+import { Link } from "react-router-dom"
 
 //### Basic initial TEST layout, all can be changed ###
 
@@ -8,13 +11,65 @@ import React from "react"
 
 export const MenuCard = ({ item, addToCart }) => {
 
+    const [calories, setCalories] = useState([])
+    const [totalCals, setTotalCals] = useState()
+
+    const fetchCalories = async () => {
+        let query = ""
+        item.Ingredients.map((el, index) => {
+            if (index == item.Ingredients.length - 1) {
+                query += `${el.quantity} ${el.name}`
+            } else {
+                query += `${el.quantity} ${el.name} and `
+            }
+        })
+        const url = 'http://localhost:4000/nutrition/' + query
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        const data = await response.json()
+        setCalories(data)
+    }
+
+    const getTotalCalories = () => {
+        let sum = 0
+        // calories.map(el => {
+        //     sum += el.calories
+        // })
+        for (let i = 0; i < calories.length; i++) {
+            sum += calories[i].calories
+        }
+        setTotalCals(Math.round(sum * 100) / 100)
+    }
+
+    useEffect(() => {
+        fetchCalories()
+    }, [])
+
+    useEffect(() => {
+        getTotalCalories()
+    }, [calories])
+
+    if (!calories) return (
+        <div className="m-5 p-5 text-center border border-gray-600">
+            <h1>loading calories...</h1>
+        </div>
+    )
     return (
         <div className="m-5 p-5 text-center border border-gray-600">
             {/* IMAGE GOES HERE */}
             {/* <img src={item.image}></img> */}
-            <h2 className="mb-3 text-xl font-semibold">{item.FoodName}</h2>
-            <h3 className="mb-3 italic">{item.Description}</h3>
+
+            <Link to={`/menuitem/${item._id}`}>
+                <h2 className="mb-3 text-xl font-semibold">{item.FoodName}</h2>
+            </Link>
+
+            <h3 className="mb-3 italic max-w-5xl m-auto">{item.Description}</h3>
             <h3 className="mb-3">£{item.Price}</h3>
+            {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3"/>:<h3 className="mb-3">{totalCals} calories</h3>}
             <button className="bg-transparent hover:bg-gold text-gold font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent"
                 onClick={() => addToCart(item, 1)}
             >

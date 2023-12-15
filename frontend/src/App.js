@@ -7,15 +7,18 @@ import { HomePage } from './pages/HomePage';
 import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CartPage } from './pages/CartPage';
+
 import Login from './components/Login';
 import { ReviewPage } from './pages/ReviewPage';
-
-
 
 import getItems from './api/getItems';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
 import { ContactUsPage } from './pages/ContactUs';
+import { CheckoutPage } from './pages/CheckoutPage';
+import { OrderHistory } from './pages/OrderHistory';
+
+import loadingImage from './images/Loading-PNG-Photo-export.png'
 
 
 function App() {
@@ -73,7 +76,8 @@ function App() {
     populate()
 
     const userID = localStorage.getItem("userID");
-    if (userID != "undefined" && userID !== undefined) {
+    if (userID) {
+      console.log(userID)
       setUserID(JSON.parse(userID));
     }
 
@@ -118,8 +122,9 @@ function App() {
   }, [userID]);
 
   if (!cartItems) return (
-    <div>
-      <h1>loading...</h1>
+    <div className='h-screen w-screen bg-fancy-dark-blue place-content-center grid'>
+      <img src={loadingImage} className='w-40 h-40 animate-spin-slow place-self-center'/>
+      <h1 className='text-gold text-3xl w-max h-max place-self-center mt-5'>loading...</h1>
     </div>
   )
 
@@ -140,7 +145,7 @@ function App() {
             element={<MenuPage addToCart={addToCart} />}
           />
           <Route
-            path='/menuitem'
+            path='/menuitem/:id'
             element={<MenuItemPage />}
           />
 
@@ -150,13 +155,26 @@ function App() {
           />
 
           <Route
+            path='/checkout'
+            element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems} cartSubTotal={cartSubTotal} userID={userID}/>}
+          />
+
+          <Route
             path='/contactus'
             element={<ContactUsPage />}
           />
 
           <Route
+
             path='/reviews'
             element={<ReviewPage />}
+          />
+              
+          <Route
+
+            path='/orderhistory'
+            element={<OrderHistory userID={userID}/>}
+
           />
 
         </Routes>

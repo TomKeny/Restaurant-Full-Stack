@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import placeholderImg from "../images/tray-plate-svgrepo-com.svg";
 
 export const CartPage = ({ cartItems, cartSubTotal, addToCart, removeFromCart }) => {
@@ -69,7 +70,11 @@ export const CartPage = ({ cartItems, cartSubTotal, addToCart, removeFromCart })
 							<p className="text-sm text-gray-700">including VAT</p>
 						</div>
 					</div>
-					<button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
+						<Link 
+						to={cartSubTotal == 0 ? "/cart":"/checkout"}
+						className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 display: block text-center">
+						Check out
+						</Link>
 				</div>
 			</div>
 		</div >
