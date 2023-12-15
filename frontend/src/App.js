@@ -8,6 +8,9 @@ import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CartPage } from './pages/CartPage';
 import Login from './components/Login';
+import { ReviewPage } from './pages/ReviewPage';
+
+
 
 import getItems from './api/getItems';
 import { Nav } from './components/Nav';
@@ -149,6 +152,11 @@ function App() {
           <Route
             path='/contactus'
             element={<ContactUsPage />}
+          />
+
+          <Route
+            path='/reviews'
+            element={<ReviewPage />}
           />
 
         </Routes>

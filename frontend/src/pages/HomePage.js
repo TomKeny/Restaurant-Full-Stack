@@ -34,7 +34,7 @@ export const HomePage = () => {
                                 </h2>
 
                                 <p className="mt-6">
-                                    Welcome to Manchester's award-winning restaurant. (add more text here)
+                                    Welcome to Manchester's award-winning restaurant.
                                 </p>
 
                                 <Link
