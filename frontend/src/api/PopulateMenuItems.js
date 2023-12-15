@@ -30,7 +30,36 @@ export const PopulateMenuItems = () => {
 
         { name: "BBQ Ribs", price: 11, description: "Slow-cooked pork ribs glazed with tangy barbecue sauce, served with coleslaw and cornbread.", ingredients: [{name: "pork ribs", quantity: "160g"}, {name: "barbeque sauce", quantity: "50g"}, {name: "coleslaw", quantity: "40g"}, {name: "cornbread", quantity: "50g"}] },
 
-        { name: "sushi platter", price: 12, description: "A selection of fresh nigiri and maki rolls featuring tuna, salmon, shrimp, and avocado.", ingredients: [{name: "sushi rice", quantity: "100g"}, {name: "tuna", quantity: "25g"}, {name: "salmon", quantity: "25g"}, {name: "shrimp", quantity: "25g"}, {name: "nori", quantity: "40g"}, {name: "avocado", quantity: "20g"}] }
+        { name: "Sushi Platter", price: 12, description: "A selection of fresh nigiri and maki rolls featuring tuna, salmon, shrimp, and avocado.", ingredients: [{name: "sushi rice", quantity: "100g"}, {name: "tuna", quantity: "25g"}, {name: "salmon", quantity: "25g"}, {name: "shrimp", quantity: "25g"}, {name: "nori", quantity: "40g"}, {name: "avocado", quantity: "20g"}] },
+
+        // DESSERTS
+        { name: "Crème Brûlée", price: 6, description: "Vanilla custard with a caramelised sugar crust.", ingredients: [{name: "crème brûlée", quantity: "150g"}] },
+
+        { name: "Apple Pie", price: 6, description: "Warm apple filling with cinnamon and a flaky crust, served with vanilla ice cream.", ingredients: [{name: "apple pie", quantity: "150g"}] },
+
+        { name: "Tiramisu", price: 6, description: "Classic Italian dessert made with layers of espresso-soaked ladyfingers and mascarpone cheese, dusted with cocoa powder.", ingredients: [{name: "tiramisu", quantity: "100g"}] },
+
+        { name: "Churros with Chocolate Sauce", price: 5, description: "Fried dough pastry sticks coated in cinnamon sugar, served with a side of warm chocolate dipping sauce.", ingredients: [{name: "churros", quantity: "60g"}, {name: "chocolate sauce", quantity: "50g"}] },
+
+        { name: "Matcha Mochi", price: 5, description: "A harmonious blend of premium matcha green tea and sweet, tender and chewy mochi", ingredients: [{name: "mochi", quantity: "100g"}] },
+
+        { name: "Flan", price: 6, description: "A creamy caramel custard dessert with a smooth, silky texture, served chilled.", ingredients: [{name: "flan", quantity: "150g"}] },
+
+        { name: "Kheer", price: 5, description: "Creamy rice pudding, flavoured with cardamom and nuts.", ingredients: [{name: "kheer", quantity: "120g"}] },
+
+
+        // DRINKS
+        { name: "Soft Drink", price: 2, description: "Choice from Coca-Cola, Sprite or Fanta", ingredients: [{name: "soft drink", quantity: "100g"}] },
+
+        { name: "Ice Tea", price: 2, description: "Choose from Peach, Raspberry or Lemon flavour", ingredients: [{name: "ice tea", quantity: "100g"}] },
+
+        { name: "Beer", price: 4, description: "We have a selection of bottled Porters, Lagers and IPAs.", ingredients: [{name: "beer", quantity: "100g"}] },
+
+        { name: "Wine", price: 4, description: "Explore our selection of Red, White, Rose and Sparkling Wines.", ingredients: [{name: "wine", quantity: "100g"}] },
+
+        { name: "Coffee", price: 3, description: "Espresso, Capuccino or Latte.", ingredients: [{name: "coffee", quantity: "100g"}] },
+
+        { name: "Tea", price: 2, description: "Assorted teas including black, green, herbal, and chai.", ingredients: [{name: "tea", quantity: "100g"}] }
     ]
     menuItems.map(el => {
         addItem('item', {
