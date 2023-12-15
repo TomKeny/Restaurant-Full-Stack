@@ -8,6 +8,9 @@ import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CartPage } from './pages/CartPage';
 
+import Login from './components/Login';
+import { ReviewPage } from './pages/ReviewPage';
+
 import getItems from './api/getItems';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
@@ -162,8 +165,16 @@ function App() {
           />
 
           <Route
+
+            path='/reviews'
+            element={<ReviewPage />}
+          />
+              
+          <Route
+
             path='/orderhistory'
             element={<OrderHistory userID={userID}/>}
+
           />
 
         </Routes>
