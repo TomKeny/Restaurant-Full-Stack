@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import loadingImage from '../images/Loading-PNG-Photo-export.png'
 
 export const ItemCard = ({ item }) => {
 
@@ -34,7 +35,7 @@ export const ItemCard = ({ item }) => {
             <h3 className="mb-3 italic">{item.Description}</h3>
             <h3 className="mb-3">£{item.Price}</h3>
             <br></br>
-            <h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>
+            {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3"/>:<h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
             {calories.map(el => {
                 return (
                     <div>
