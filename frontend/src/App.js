@@ -142,7 +142,7 @@ function App() {
             element={<MenuPage addToCart={addToCart} />}
           />
           <Route
-            path='/menuitem'
+            path='/menuitem/:id'
             element={<MenuItemPage />}
           />
 

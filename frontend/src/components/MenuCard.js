@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect } from 'react'
 import loadingImage from '../images/Loading-PNG-Photo-export.png'
+import { Link } from "react-router-dom"
 
 //### Basic initial TEST layout, all can be changed ###
 
@@ -61,7 +62,11 @@ export const MenuCard = ({ item, addToCart }) => {
         <div className="m-5 p-5 text-center border border-gray-600">
             {/* IMAGE GOES HERE */}
             {/* <img src={item.image}></img> */}
-            <h2 className="mb-3 text-xl font-semibold">{item.FoodName}</h2>
+
+            <Link to={`/menuitem/${item._id}`}>
+                <h2 className="mb-3 text-xl font-semibold">{item.FoodName}</h2>
+            </Link>
+
             <h3 className="mb-3 italic">{item.Description}</h3>
             <h3 className="mb-3">£{item.Price}</h3>
             {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3"/>:<h3 className="mb-3">{totalCals} calories</h3>}
