@@ -7,6 +7,7 @@ import { HomePage } from './pages/HomePage';
 import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CartPage } from './pages/CartPage';
+import {Cuisines} from './pages/Cuisines'
 
 import Login from './components/Login';
 import { ReviewPage } from './pages/ReviewPage';
@@ -146,7 +147,11 @@ function App() {
           />
           <Route
             path='/menuitem/:id'
-            element={<MenuItemPage />}
+            element={<MenuItemPage addToCart={addToCart} />}
+          />
+          <Route
+            path='/cuisines/:cuisine'
+            element={<Cuisines addToCart={addToCart} />}
           />
 
           <Route
