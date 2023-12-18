@@ -54,7 +54,7 @@ export const HomePage = () => {
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
 
                         {/* <!-- image 1 starts --> */}
-                        <a href="#"
+                        <span
                             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
                             <img src={image1} loading="miso" alt="Photo by Minh Pham" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
 
@@ -62,37 +62,37 @@ export const HomePage = () => {
                             <div
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
-                        </a>
+                        </span>
                         {/* <!-- image 1 ends --> */}
 
                         {/* <!-- image 2 starts --> */}
-                        <a href="#"
+                        <span
                             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
                             <img src={image2} loading="lazy" alt="burger" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                             <div
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
-                        </a>
+                        </span>
                         {/* <!-- image 2 ends --> */}
 
                         {/* <!-- image 3 starts --> */}
-                        <a href="#"
+                        <span
                             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:col-span-2 md:h-80">
                             <img src={image3} loading="lazy" alt="samosas" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                             <div
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
-                        </a>
+                        </span>
                         {/* <!-- image 3 ends --> */}
 
                         {/* <!-- image 4 starts --> */}
-                        <a href="#"
+                        <span
                             className="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80">
                             <img src={image4} loading="lazy" alt="chicken wings" className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                             <div
                                 className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50">
                             </div>
-                        </a>
+                        </span>
                         {/* <!-- image 4 ends --> */}
                     </div>
                 </div>

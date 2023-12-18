@@ -55,16 +55,16 @@ export const ItemCard = ({ item, addToCart }) => {
             fiber += calories[i].fiber_g
             sugar += calories[i].sugar_g
         }
-        cals = Math.round(cals * 100) / 100      
-        serving = Math.round(serving * 100) / 100      
-        fat = Math.round(fat * 100) / 100      
-        saturatedFat = Math.round(saturatedFat * 100) / 100      
-        protein = Math.round(protein * 100) / 100      
-        sodium = Math.round(sodium * 100) / 100      
-        potassium = Math.round(potassium * 100) / 100      
-        cholesterol = Math.round(cholesterol * 100) / 100      
-        carbs = Math.round(carbs * 100) / 100      
-        fiber = Math.round(fiber * 100) / 100      
+        cals = Math.round(cals * 100) / 100
+        serving = Math.round(serving * 100) / 100
+        fat = Math.round(fat * 100) / 100
+        saturatedFat = Math.round(saturatedFat * 100) / 100
+        protein = Math.round(protein * 100) / 100
+        sodium = Math.round(sodium * 100) / 100
+        potassium = Math.round(potassium * 100) / 100
+        cholesterol = Math.round(cholesterol * 100) / 100
+        carbs = Math.round(carbs * 100) / 100
+        fiber = Math.round(fiber * 100) / 100
         sugar = Math.round(sugar * 100) / 100
 
         return ({
@@ -117,11 +117,11 @@ export const ItemCard = ({ item, addToCart }) => {
 
                 })}
             </div>
-            <ItemCalories 
+            <ItemCalories
                 ingredient={calorieDisplay}
             />
             <HashLink smooth to={`/menu#${item._id}`}>
-                <h2 className="text-1xl text-center m-5 border-b w-fit m-auto border-gray-600 my-5 hover:text-gray-600">Back to Full Menu</h2>
+                <h2 className="text-1xl text-center border-b w-fit m-auto border-gray-600 my-5 hover:text-gray-600">Back to Full Menu</h2>
             </HashLink>
         </div>
     )

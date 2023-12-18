@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-import { Fragment, useEffect } from 'react';
-import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Cart } from './Cart';
@@ -9,6 +8,12 @@ import getItems from '../api/getItems';
 import addItem from '../api/addItem';
 import { useLocation } from 'react-router-dom';
 
+const navigation = [
+    { name: 'Home', href: '/' },
+    { name: 'Menu', href: '/menu' },
+    { name: 'Reviews', href: '/reviews' },
+    { name: 'Contact Us', href: '/contactus' },
+]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -21,9 +26,9 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
     const [toggle, setToggle] = useState(true)
     const [navigation, setNavigation] = useState([
         { name: 'Home', href: '/', current: false, index: 0 },
-        { name: 'Menu', href: '/menu', current: false, index: 1  },
-        { name: 'Reviews', href: '/reviews', current: false, index: 2  },
-        { name: 'Contact Us', href: '/contactus', current: false, index: 3  },
+        { name: 'Menu', href: '/menu', current: false, index: 1 },
+        { name: 'Reviews', href: '/reviews', current: false, index: 2 },
+        { name: 'Contact Us', href: '/contactus', current: false, index: 3 },
     ])
 
     async function loginSubmitHandler(e) {
@@ -57,7 +62,7 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
 
     function setActive(index) {
         let tempNavigation = [...navigation]
-        for (let i = 0; i < 4; i++ ) {
+        for (let i = 0; i < 4; i++) {
             tempNavigation[i].current = false
         }
         if (index != -1) {
@@ -118,17 +123,20 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
-                                            <Link
+                                            <NavLink
                                                 key={item.name}
                                                 to={item.href}
-                                                className={classNames(
-                                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'rounded-md px-3 py-2 text-sm font-medium'
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
+                                                className={({ isActive }) =>
+                                                    classNames(
+                                                        isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                        'rounded-md px-3 py-2 text-sm font-medium'
+                                                    )
+                                                }
+                                                aria-current={({ isActive }) =>
+                                                    isActive ? 'page' : undefined}
                                             >
                                                 {item.name}
-                                            </Link>
+                                            </NavLink>
                                         ))}
                                     </div>
                                 </div>
@@ -237,7 +245,8 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                         </div>
                     </Disclosure.Panel>
                 </>
-            )}
-        </Disclosure>
+            )
+            }
+        </Disclosure >
     )
 }
