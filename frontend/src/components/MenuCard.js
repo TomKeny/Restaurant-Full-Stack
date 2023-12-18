@@ -39,9 +39,6 @@ export const MenuCard = ({ item, addToCart }) => {
 
     const getTotalCalories = () => {
         let sum = 0
-        // calories.map(el => {
-        //     sum += el.calories
-        // })
         for (let i = 0; i < calories.length; i++) {
             sum += calories[i].calories
         }
