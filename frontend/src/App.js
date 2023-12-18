@@ -77,7 +77,7 @@ function App() {
     populate()
 
     const userID = localStorage.getItem("userID");
-    if (userID) {
+    if (userID !== null) {
       console.log(userID)
       setUserID(JSON.parse(userID));
     }
