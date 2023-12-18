@@ -45,3 +45,4 @@ export const MenuPage = ({ addToCart }) => {
         </div>
     )
 }
+
