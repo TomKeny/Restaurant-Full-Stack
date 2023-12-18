@@ -7,6 +7,8 @@ import { Cart } from './Cart';
 import logo from '../images/logo.svg';
 import getItems from '../api/getItems';
 import addItem from '../api/addItem';
+import { useLocation } from 'react-router-dom';
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -64,6 +66,8 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
         setNavigation(tempNavigation)
     }
 
+    let location = useLocation()
+
     useEffect(() => {
         console.log(window.location.pathname)
         switch (window.location.pathname) {
@@ -83,7 +87,8 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                 setActive(-1)
                 break
         }
-    })
+    }, [location])
+
 
     return (
         <Disclosure as="nav" className="bg-fancy-extra-dark-blue">
