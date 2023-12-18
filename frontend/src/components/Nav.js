@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -7,13 +7,8 @@ import { Cart } from './Cart';
 import logo from '../images/logo.svg';
 import getItems from '../api/getItems';
 import addItem from '../api/addItem';
+import { useLocation } from 'react-router-dom';
 
-const navigation = [
-    { name: 'Home', href: '/', current: true },
-    { name: 'Menu', href: '/menu', current: false },
-    { name: 'Reviews', href: '/reviews', current: false },
-    { name: 'Contact Us', href: '/contactus', current: false },
-]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -24,6 +19,12 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [toggle, setToggle] = useState(true)
+    const [navigation, setNavigation] = useState([
+        { name: 'Home', href: '/', current: false, index: 0 },
+        { name: 'Menu', href: '/menu', current: false, index: 1  },
+        { name: 'Reviews', href: '/reviews', current: false, index: 2  },
+        { name: 'Contact Us', href: '/contactus', current: false, index: 3  },
+    ])
 
     async function loginSubmitHandler(e) {
         e.preventDefault()
@@ -53,6 +54,41 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
     function Toggle() {
         toggle ? setToggle(false) : setToggle(true)
     }
+
+    function setActive(index) {
+        let tempNavigation = [...navigation]
+        for (let i = 0; i < 4; i++ ) {
+            tempNavigation[i].current = false
+        }
+        if (index != -1) {
+            tempNavigation[index].current = true
+        }
+        setNavigation(tempNavigation)
+    }
+
+    let location = useLocation()
+
+    useEffect(() => {
+        console.log(window.location.pathname)
+        switch (window.location.pathname) {
+            case "/":
+                setActive(0)
+                break
+            case "/menu":
+                setActive(1)
+                break
+            case "/reviews":
+                setActive(2)
+                break
+            case "/contactus":
+                setActive(3)
+                break
+            default:
+                setActive(-1)
+                break
+        }
+    }, [location])
+
 
     return (
         <Disclosure as="nav" className="bg-fancy-extra-dark-blue">

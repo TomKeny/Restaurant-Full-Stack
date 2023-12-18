@@ -59,7 +59,8 @@ export const MenuCard = ({ item, addToCart }) => {
     }
 
     useEffect(() => {
-        fetchCalories()
+        if (calories.length == 0) {
+        fetchCalories()}
     }, [])
 
     useEffect(() => {
