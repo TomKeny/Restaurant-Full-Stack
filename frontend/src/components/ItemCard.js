@@ -55,16 +55,16 @@ export const ItemCard = ({ item, addToCart }) => {
             fiber += calories[i].fiber_g
             sugar += calories[i].sugar_g
         }
-        cals = Math.round(cals * 100) / 100      
-        serving = Math.round(serving * 100) / 100      
-        fat = Math.round(fat * 100) / 100      
-        saturatedFat = Math.round(saturatedFat * 100) / 100      
-        protein = Math.round(protein * 100) / 100      
-        sodium = Math.round(sodium * 100) / 100      
-        potassium = Math.round(potassium * 100) / 100      
-        cholesterol = Math.round(cholesterol * 100) / 100      
-        carbs = Math.round(carbs * 100) / 100      
-        fiber = Math.round(fiber * 100) / 100      
+        cals = Math.round(cals * 100) / 100
+        serving = Math.round(serving * 100) / 100
+        fat = Math.round(fat * 100) / 100
+        saturatedFat = Math.round(saturatedFat * 100) / 100
+        protein = Math.round(protein * 100) / 100
+        sodium = Math.round(sodium * 100) / 100
+        potassium = Math.round(potassium * 100) / 100
+        cholesterol = Math.round(cholesterol * 100) / 100
+        carbs = Math.round(carbs * 100) / 100
+        fiber = Math.round(fiber * 100) / 100
         sugar = Math.round(sugar * 100) / 100
 
         return ({
@@ -104,27 +104,6 @@ export const ItemCard = ({ item, addToCart }) => {
             </button>
             {/* horizontal line */}
             <div className="my-10 border-b w-2/3 m-auto"></div>
-<<<<<<< HEAD
-            {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" /> : <h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
-            {calories.map(el => {
-                return (
-                    <div>
-                        <h3 className="mb-3">Ingredient: {el.name}</h3>
-                        <p>calories: {el.calories}</p>
-                        <p>quantity: {el.serving_size_g}g</p>
-                        <p>total fat: {el.fat_total_g}g</p>
-                        <p>saturated fat: {el.fat_saturated_g}g</p>
-                        <p>protein: {el.protein_g}g</p>
-                        <p>sodium: {el.sodium_mg}mg</p>
-                        <p>potassium: {el.potassium_mg}mg</p>
-                        <p>cholesterol: {el.cholesterol_mg}mg</p>
-                        <p>total carbohydrates: {el.carbohydrates_total_g}g</p>
-                        <p>fiber: {el.fiber_g}g</p>
-                        <p className="mb-3">sugar: {el.sugar_g}g</p>
-                    </div>
-                )
-            })}
-=======
             {calories == 0
                 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
                 : <h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
@@ -138,10 +117,9 @@ export const ItemCard = ({ item, addToCart }) => {
 
                 })}
             </div>
-            <ItemCalories 
+            <ItemCalories
                 ingredient={calorieDisplay}
             />
->>>>>>> main
             <HashLink smooth to={`/menu#${item._id}`}>
                 <h2 className="text-1xl text-center border-b w-fit m-auto border-gray-600 my-5 hover:text-gray-600">Back to Full Menu</h2>
             </HashLink>
