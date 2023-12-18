@@ -24,7 +24,12 @@ const itemSchema = new Schema({
     Ingredients: {
         type: Object,
         required: true
+    },
+    Image: {
+        type: String,
+        required: true
     }
+
 })
 
 module.exports = mongoose.model('Item', itemSchema)

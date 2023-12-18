@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Fragment } from 'react';
 import { useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -9,10 +9,10 @@ import getItems from '../api/getItems';
 import addItem from '../api/addItem';
 
 const navigation = [
-    { name: 'Home', href: '/', current: true },
-    { name: 'Menu', href: '/menu', current: false },
-    { name: 'Reviews', href: '/reviews', current: false },
-    { name: 'Contact Us', href: '/contactus', current: false },
+    { name: 'Home', href: '/' },
+    { name: 'Menu', href: '/menu' },
+    { name: 'Reviews', href: '/reviews' },
+    { name: 'Contact Us', href: '/contactus' },
 ]
 
 function classNames(...classes) {
@@ -82,17 +82,20 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
                                         {navigation.map((item) => (
-                                            <Link
+                                            <NavLink
                                                 key={item.name}
                                                 to={item.href}
-                                                className={classNames(
-                                                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'rounded-md px-3 py-2 text-sm font-medium'
-                                                )}
-                                                aria-current={item.current ? 'page' : undefined}
+                                                className={({ isActive }) =>
+                                                    classNames(
+                                                        isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                        'rounded-md px-3 py-2 text-sm font-medium'
+                                                    )
+                                                }
+                                                aria-current={({ isActive }) =>
+                                                    isActive ? 'page' : undefined}
                                             >
                                                 {item.name}
-                                            </Link>
+                                            </NavLink>
                                         ))}
                                     </div>
                                 </div>
@@ -201,7 +204,8 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                         </div>
                     </Disclosure.Panel>
                 </>
-            )}
-        </Disclosure>
+            )
+            }
+        </Disclosure >
     )
 }

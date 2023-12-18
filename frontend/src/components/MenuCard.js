@@ -5,17 +5,12 @@ import { HashLink } from "react-router-hash-link"
 
 //### Basic initial TEST layout, all can be changed ###
 
-//call MenuCard from App.js, pass in food item as argument (might be best to use primary Key/ UniqueID), the component will display all needed info from database or file.  
-
-//Styling is a must!!
-
 export const MenuCard = ({ item, addToCart }) => {
-
+    const [image, setImage] = useState()
     const [calories, setCalories] = useState([])
     const [totalCals, setTotalCals] = useState()
     const [nutritionPopup, setNutritionPopup] = useState('opacity-0')
     const [cuisinePopup, setCuisinePopup] = useState('opacity-0 z-0')
-
 
     const fetchCalories = async () => {
         let query = ""
@@ -63,6 +58,7 @@ export const MenuCard = ({ item, addToCart }) => {
 
     useEffect(() => {
         fetchCalories()
+
     }, [])
 
     useEffect(() => {
@@ -76,8 +72,9 @@ export const MenuCard = ({ item, addToCart }) => {
     )
     return (
         <div id={item._id} className="m-5 p-5 text-center border border-gray-600">
-            {/* IMAGE GOES HERE */}
-            {/* <img src={item.image}></img> */}
+            <div className="flex items-center justify-center pb-10 h-100 w-100" >
+                {item.Image ? <img src={item.Image} className="object-fit object-center border-4 border-gray-600 "></img> : null}
+            </div>
 
             {/* FoodName */}
             <div className={`absolute -translate-y-8 left-1/2 -translate-x-1/2 ${nutritionPopup} transition-opacity duration-500 delay-500`}>
@@ -109,7 +106,6 @@ export const MenuCard = ({ item, addToCart }) => {
             >
                 Add to cart
             </button>
-            {/* ADD WAY TO ADD MORE THAN 1 ITEM */}
         </div>
     )
 }

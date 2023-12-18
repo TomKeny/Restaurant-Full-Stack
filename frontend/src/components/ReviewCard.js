@@ -7,7 +7,7 @@ export const ReviewCard = ({ review }) => {
                 <div className="flex flex-col gap-4">
 
                     <div className="flex justify justify-between border-b-4">
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 mb-5">
                             <span className="w-7 h-7 text-center align-middle rounded-full bg-black">
                                 <span>{review.initial}</span>
                             </span>

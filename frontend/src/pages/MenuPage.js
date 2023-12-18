@@ -28,20 +28,20 @@ export const MenuPage = ({ addToCart }) => {
             {/* // pass down image and calorie info to card component */}
 
             {menu.length == 0
-                ?   <div>
-                        <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
-                        <p className="m-auto mt-1 text-center">Populating Menu. Refresh the page.</p>
-                    </div>
+                ? <div>
+                    <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
+                    <p className="m-auto mt-1 text-center">Populating Menu. Refresh the page.</p>
+                </div>
                 : menu.map((item, index) => {
-                        return (
-                            <MenuCard
-                                item={item}
-                                addToCart={addToCart}
-                                key={item.FoodName}
-                            />
-                        )
-                    })
-                }
+                    return (
+                        <MenuCard
+                            item={item}
+                            addToCart={addToCart}
+                            key={item.FoodName}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }

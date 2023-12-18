@@ -43,7 +43,7 @@ export const ItemCard = ({ item, addToCart }) => {
             </button>
             {/* horizontal line */}
             <div className="my-10 border-b w-2/3 m-auto"></div>
-            {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3"/>:<h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
+            {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" /> : <h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
             {calories.map(el => {
                 return (
                     <div>
@@ -63,7 +63,7 @@ export const ItemCard = ({ item, addToCart }) => {
                 )
             })}
             <HashLink smooth to={`/menu#${item._id}`}>
-                <h2 className="text-1xl text-center m-5 border-b w-fit m-auto border-gray-600 my-5 hover:text-gray-600">Back to Full Menu</h2>
+                <h2 className="text-1xl text-center border-b w-fit m-auto border-gray-600 my-5 hover:text-gray-600">Back to Full Menu</h2>
             </HashLink>
         </div>
     )
