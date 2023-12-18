@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import getItems from '../api/getItems'
-import { MenuCard } from '../components/MenuCard'
 import loadingImage from '../images/Loading-PNG-Photo-export.png'
 import { MenuSet } from '../components/MenuSet'
 
