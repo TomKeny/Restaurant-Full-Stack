@@ -9,7 +9,14 @@ export const CheckoutPage = ({ cartItems, setCartItems, cartSubTotal, userID}) =
     const [orderID, setOrderID] = useState()
     
     async function purchase() {
-        const response = await addItem("order", {UserID: userID.UserID, ItemID: cartItems})
+		let response
+		console.log(`UserID: ${userID.UserID}, ItemID: ${cartItems}`)
+		if (userID != "") {
+        	response = await addItem("order", {UserID: userID.UserID, ItemID: cartItems})
+		}
+		else {
+			response = await addItem("order", {UserID: "User not logged in", ItemID: cartItems})
+		}
         setOrderID(response.Item._id)
         setPurchased(true)
         setPurchasedItems([...cartItems])
