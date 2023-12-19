@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 export const Cuisines = ({ addToCart }) => {
 
     const { cuisine } = useParams()
+    const menuArr = ['starters', 'mains', 'desserts']
     const [menu, setMenu] = useState([])
 
     const getAndSetMenu = async () => {
@@ -27,18 +28,24 @@ export const Cuisines = ({ addToCart }) => {
     )
     return (
         <div>
-            <h1 className="text-4xl text-center m-8"><inline className="text-gold">{cuisine}</inline> Menu</h1>
+            <h1 className="text-4xl text-center m-8"><span className="text-gold">{cuisine}</span> Menu</h1>
 
-            {menu.map((item, index) => {
+            {menuArr.map(menuSet => {
                 return (
-                    item.Cuisine == cuisine &&
-                    <MenuCard
-                        item={item}
-                        addToCart={addToCart}
-                        key={item.FoodName}
-                    />
+                    menu.map(item => {
+                        return (
+                            item.MenuSet == menuSet && item.Cuisine == cuisine &&
+                            <MenuCard
+                                item={item}
+                                addToCart={addToCart}
+                                key={item.FoodName}
+                            />
+                        )
+                    })
                 )
-            })}
+            }
+
+            )}
             <Link to={'/menu'}>
                 <h2 className="text-1xl text-center m-5 border-b w-fit m-auto border-gray-600 my-5 hover:text-gray-600">Back to Full Menu</h2>
             </Link>
