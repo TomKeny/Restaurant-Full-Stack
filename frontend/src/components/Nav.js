@@ -15,6 +15,8 @@ const navigation = [
     { name: 'Contact Us', href: '/contactus' },
 ]
 
+const inputs = document.getElementsByClassName('loginInput')
+
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -72,6 +74,20 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
     }
 
     let location = useLocation()
+
+    // Keydown trigger line 200
+    const handleKeydown = (event) => {
+        if (event.key == 'Tab') {
+            event.preventDefault()
+            inputs[1].focus()
+        } else if (event.key == 'ArrowDown') {
+            event.preventDefault()
+            inputs[1].focus()
+        } else if (event.key == 'ArrowUp') {
+            event.preventDefault()
+            inputs[0].focus()
+        }
+    }
 
     useEffect(() => {
         console.log(window.location.pathname)
@@ -179,15 +195,16 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                                         <>
                                                             <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler} style={{ textAlign: "center" }}>
                                                                 <label>
-                                                                    <div className='text-black text-xs'>Username:</div>
-                                                                    <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
+                                                                    <div className='text-black text-xs mt-1'>Username:</div>
+                                                                    {/* Keydown function at Line 79 */}
+                                                                    <input id="Username" className="loginInput" type="text" value={username} onChange={(e) => setUsername(e.target.value)} onKeyDown={handleKeydown} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
                                                                 </label>
                                                                 <br></br>
                                                                 <label>
                                                                     <div className='text-black text-xs'>Password:</div>
-                                                                    <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
+                                                                    <input id="Password" className="loginInput" type="text" value={password} onChange={(e) => setPassword(e.target.value)} onKeyDown={handleKeydown} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
                                                                 </label>
-                                                                
+
                                                                 <br></br>
                                                                 <button
                                                                     style={{ marginLeft: "auto", marginRight: "auto" }}
