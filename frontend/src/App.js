@@ -72,6 +72,20 @@ function App() {
     )
   }
 
+  function destroyFromCart (item) {
+    let tempCart = [...cartItems]
+    let tempQuantity = cartQuantity
+    for (let i = 0; i < tempCart.length; i++) {
+      if (tempCart[i] == item) {
+        tempCart.splice(i,1)
+        tempQuantity -= item.quantity
+        break
+      }
+    }
+    setCartItems(tempCart)
+    setCartQuantity(tempQuantity)
+  }
+
   // populate menu if empty
   useEffect(() => {
     populate()
@@ -156,7 +170,7 @@ function App() {
 
           <Route
             path='/cart'
-            element={<CartPage cartItems={cartItems} cartSubTotal={cartSubTotal} addToCart={addToCart} removeFromCart={removeFromCart} />}
+            element={<CartPage cartItems={cartItems} cartSubTotal={cartSubTotal} addToCart={addToCart} removeFromCart={removeFromCart} destroyFromCart={destroyFromCart}/>}
           />
 
           <Route
