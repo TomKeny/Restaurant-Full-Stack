@@ -6,8 +6,13 @@ import { ItemCalories } from "./ItemCalories"
 export const ItemCard = ({ item, addToCart }) => {
 
     const [calories, setCalories] = useState([])
+    const [calLength, setCalLength] = useState()
     const [totalNutrition, setTotalNutrition] = useState('')
     const [calorieDisplay, setCalorieDisplay] = useState('')
+    const [btnStyle, setBtnStyle] = useState('border-2 border-gold bg-transparent')
+    const [allBtnStyle, setAllBtnStyle] = useState('bg-gold font-bold')
+
+    
 
     // This has already been done on MenuCard.js but I couldn't get passing it as a param to work and couldn't figure how else to pass it to this route so I'm just fetching it again
     const fetchCalories = async () => {
@@ -28,6 +33,7 @@ export const ItemCard = ({ item, addToCart }) => {
         })
         const data = await response.json()
         setCalories(data)
+        setCalLength(data.length)
     }
 
     const getTotalNutrition = () => {
@@ -55,16 +61,16 @@ export const ItemCard = ({ item, addToCart }) => {
             fiber += calories[i].fiber_g
             sugar += calories[i].sugar_g
         }
-        cals = Math.round(cals * 100) / 100      
-        serving = Math.round(serving * 100) / 100      
-        fat = Math.round(fat * 100) / 100      
-        saturatedFat = Math.round(saturatedFat * 100) / 100      
-        protein = Math.round(protein * 100) / 100      
-        sodium = Math.round(sodium * 100) / 100      
-        potassium = Math.round(potassium * 100) / 100      
-        cholesterol = Math.round(cholesterol * 100) / 100      
-        carbs = Math.round(carbs * 100) / 100      
-        fiber = Math.round(fiber * 100) / 100      
+        cals = Math.round(cals * 100) / 100
+        serving = Math.round(serving * 100) / 100
+        fat = Math.round(fat * 100) / 100
+        saturatedFat = Math.round(saturatedFat * 100) / 100
+        protein = Math.round(protein * 100) / 100
+        sodium = Math.round(sodium * 100) / 100
+        potassium = Math.round(potassium * 100) / 100
+        cholesterol = Math.round(cholesterol * 100) / 100
+        carbs = Math.round(carbs * 100) / 100
+        fiber = Math.round(fiber * 100) / 100
         sugar = Math.round(sugar * 100) / 100
 
         return ({
@@ -81,6 +87,27 @@ export const ItemCard = ({ item, addToCart }) => {
             fiber_g: fiber,
             sugar_g: sugar
         })
+    }
+
+    const handleClick = (el, index) => {
+        // reset button styling
+        setAllBtnStyle('border-2 border-gold bg-transparent')
+        for (let i=0; i<calLength; i++) {
+            let button = document.getElementById(i)
+            button.style.backgroundColor = 'transparent'
+            button.style.fontWeight = '400'
+        }
+        if (el == "All Ingredients") {
+            setCalorieDisplay(totalNutrition)   
+            setAllBtnStyle('bg-gold font-bold')         
+        } else {
+            setCalorieDisplay(el)
+            // Button styling
+            let button = document.getElementById(index)
+            button.style.backgroundColor = '#8d721e'
+            button.style.fontWeight = 'bold'
+        }
+
     }
 
     useEffect(() => {
@@ -109,15 +136,15 @@ export const ItemCard = ({ item, addToCart }) => {
                 : <h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
 
             <div className="flex justify-center">
-                <button onClick={() => setCalorieDisplay(totalNutrition)} id="allIngredients" className="w-fit p-2 border-2 border-gold m-1">All Ingredients</button>
-                {calories.map(el => {
+                <button onClick={() => handleClick("All Ingredients", -1)} id="All Ingredients" className={`w-fit p-2 ${allBtnStyle} m-1`}>All Ingredients</button>
+                {calories.map((el, index) => {
                     return (
-                        <button onClick={() => setCalorieDisplay(el)} id={el.name} className="w-fit p-2 border-2 border-gold m-1">{el.name}</button>
+                        <button onClick={() => handleClick(el, index)} id={index} className={`w-fit p-2 ${btnStyle} m-1`}>{el.name}</button>
                     )
 
                 })}
             </div>
-            <ItemCalories 
+            <ItemCalories
                 ingredient={calorieDisplay}
             />
             <HashLink smooth to={`/menu#${item._id}`}>

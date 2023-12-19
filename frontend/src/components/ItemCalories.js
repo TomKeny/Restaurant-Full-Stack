@@ -1,7 +1,7 @@
 export const ItemCalories = ({ingredient}) => {
     return (
-        <div>
-            <h3 className="my-3">Ingredient: {ingredient.name}</h3>
+        <div className="p-5">
+            {/* <h3 className="my-3 font-semibold">{ingredient.name}</h3> */}
             <p>calories: {ingredient.calories}</p>
             <p>quantity: {ingredient.serving_size_g}g</p>
             <p>total fat: {ingredient.fat_total_g}g</p>
@@ -12,7 +12,7 @@ export const ItemCalories = ({ingredient}) => {
             <p>cholesterol: {ingredient.cholesterol_mg}mg</p>
             <p>total carbohydrates: {ingredient.carbohydrates_total_g}g</p>
             <p>fiber: {ingredient.fiber_g}g</p>
-            <p className="mb-3">sugar: {ingredient.sugar_g}g</p>
+            <p>sugar: {ingredient.sugar_g}g</p>
         </div>
     )
 }
