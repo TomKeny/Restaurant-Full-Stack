@@ -75,7 +75,7 @@ export const MenuCard = ({ item, addToCart }) => {
             </div>
 
             {/* FoodName */}
-            <div className={`absolute -translate-y-8 left-1/2 -translate-x-1/2 ${nutritionPopup} transition-opacity duration-500 delay-500`}>
+            <div className={`absolute -translate-y-8 left-1/2 -translate-x-1/2 ${nutritionPopup} transition-opacity duration-500 delay-300`}>
                 <div id="popup" className="z-10 relative bg-fancy-dark-blue text-white border-2 border-gold text-xs p-1 w-fit m-auto">see nutritional info</div>
                 <div id="popupArrow" className="z-0 absolute rotate-45 bg-gold w-1.5 h-1.5 left-1/2 -translate-y-1/2 -translate-x-1/2"></div>
             </div>
@@ -84,7 +84,7 @@ export const MenuCard = ({ item, addToCart }) => {
             </HashLink>
 
             {/* Cuisine */}
-            <div className={`absolute -translate-y-8 left-1/2 -translate-x-1/2 ${cuisinePopup} transition-opacity duration-500 delay-500`}>
+            <div className={`absolute -translate-y-8 left-1/2 -translate-x-1/2 ${cuisinePopup} transition-opacity duration-500 delay-300`}>
                 <div className="z-50 relative bg-fancy-dark-blue text-white border-2 border-gold text-xs p-1 w-fit m-auto">see {item.Cuisine} menu</div>
                 <div className="z-40 absolute rotate-45 bg-gold w-1.5 h-1.5 left-1/2 -translate-y-1/2 -translate-x-1/2"></div>
             </div>
