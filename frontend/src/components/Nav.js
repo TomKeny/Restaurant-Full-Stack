@@ -117,9 +117,9 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
 
                                 {/* logo */}
                                 <NavLink to={'/'}>
-                                <div className="flex flex-shrink-0 items-center">
-                                    <img className="h-12 me-3" src={logo} />
-                                </div>
+                                    <div className="flex flex-shrink-0 items-center">
+                                        <img className="h-12 me-3" src={logo} />
+                                    </div>
                                 </NavLink>
 
                                 <div className="hidden sm:ml-6 sm:block">
@@ -178,9 +178,16 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                                     {({ active }) => (
                                                         <>
                                                             <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler} style={{ textAlign: "center" }}>
-                                                                <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginTop: 5 }}></input>
+                                                                <label>
+                                                                    <div className='text-black text-xs'>Username:</div>
+                                                                    <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
+                                                                </label>
                                                                 <br></br>
-                                                                <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginTop: 5 }}></input>
+                                                                <label>
+                                                                    <div className='text-black text-xs'>Password:</div>
+                                                                    <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
+                                                                </label>
+                                                                
                                                                 <br></br>
                                                                 <button
                                                                     style={{ marginLeft: "auto", marginRight: "auto" }}
