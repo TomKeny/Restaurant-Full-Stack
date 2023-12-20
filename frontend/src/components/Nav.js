@@ -15,6 +15,8 @@ const navigation = [
     { name: 'Contact Us', href: '/contactus' },
 ]
 
+// HandleClick line 82
+// Onkeydown line 202
 const inputs = document.getElementsByClassName('loginInput')
 
 function classNames(...classes) {
@@ -75,7 +77,8 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
 
     let location = useLocation()
 
-    // Keydown trigger line 200
+    // Keydown trigger line 202
+    // inputs line 18
     const handleKeydown = (event) => {
         if (event.key == 'Tab') {
             event.preventDefault()
@@ -196,7 +199,7 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                                             <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler} style={{ textAlign: "center" }}>
                                                                 <label>
                                                                     <div className='text-black text-xs mt-1'>Username:</div>
-                                                                    {/* Keydown function at Line 79 */}
+                                                                    {/* Keydown function at Line 81 */}
                                                                     <input id="Username" className="loginInput" type="text" value={username} onChange={(e) => setUsername(e.target.value)} onKeyDown={handleKeydown} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
                                                                 </label>
                                                                 <br></br>
