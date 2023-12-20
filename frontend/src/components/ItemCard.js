@@ -11,7 +11,8 @@ export const ItemCard = ({ item, addToCart }) => {
     const [calorieDisplay, setCalorieDisplay] = useState('')
     const [btnStyle, setBtnStyle] = useState('border-2 border-gold bg-transparent')
     const [allBtnStyle, setAllBtnStyle] = useState('bg-gold font-bold')
-
+    // HandleClick Line 94
+    // Button Line 142
     
 
     // This has already been done on MenuCard.js but I couldn't get passing it as a param to work and couldn't figure how else to pass it to this route so I'm just fetching it again
@@ -89,6 +90,8 @@ export const ItemCard = ({ item, addToCart }) => {
         })
     }
 
+    // Buttons Line 142
+    // State Line 12
     const handleClick = (el, index) => {
         // reset button styling
         setAllBtnStyle('border-2 border-gold bg-transparent')
@@ -135,7 +138,8 @@ export const ItemCard = ({ item, addToCart }) => {
                 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
                 : <h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
 
-            <div className="flex justify-center">
+            <div className="flex justify-center flex-wrap">
+                {/* HandleClick Line 94 */}
                 <button onClick={() => handleClick("All Ingredients", -1)} id="All Ingredients" className={`w-fit p-2 ${allBtnStyle} m-1`}>All Ingredients</button>
                 {calories.map((el, index) => {
                     return (
