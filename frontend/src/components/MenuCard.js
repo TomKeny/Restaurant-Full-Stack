@@ -1,12 +1,10 @@
-import React from "react"
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react"
 import loadingImage from '../images/Loading-PNG-Photo-export.png'
 import { HashLink } from "react-router-hash-link"
 
 //### Basic initial TEST layout, all can be changed ###
 
 export const MenuCard = ({ item, addToCart }) => {
-    const [image, setImage] = useState()
     const [calories, setCalories] = useState([])
     const [totalCals, setTotalCals] = useState()
     const [nutritionPopup, setNutritionPopup] = useState('opacity-0')
@@ -14,8 +12,8 @@ export const MenuCard = ({ item, addToCart }) => {
 
     const fetchCalories = async () => {
         let query = ""
-        item.Ingredients.map((el, index) => {
-            if (index == item.Ingredients.length - 1) {
+        item.Ingredients.forEach((el, index) => {
+            if (index === item.Ingredients.length - 1) {
                 query += `${el.quantity} ${el.name}`
             } else {
                 query += `${el.quantity} ${el.name} and `
@@ -54,7 +52,7 @@ export const MenuCard = ({ item, addToCart }) => {
     }
 
     useEffect(() => {
-        if (calories.length == 0) {
+        if (calories.length === 0) {
             fetchCalories()
         }
     }, [])
@@ -70,8 +68,8 @@ export const MenuCard = ({ item, addToCart }) => {
     )
     return (
         <div id={item._id} className="m-5 p-5 text-center border border-gray-600">
-            <div className="flex items-center justify-center pb-10 h-100 w-100" >
-                {item.Image ? <img src={item.Image} className="object-fit object-center border-4 border-gray-600 "></img> : null}
+            <div className="flex items-center justify-center pb-10 h-75 w-100" >
+                {item.Image ? <img src={item.Image} className="object-fit object-center border-4 border-gray-600 " alt="menu item"></img> : null}
             </div>
 
             {/* FoodName */}
@@ -89,7 +87,7 @@ export const MenuCard = ({ item, addToCart }) => {
                 <div className="z-40 absolute rotate-45 bg-gold w-1.5 h-1.5 left-1/2 -translate-y-1/2 -translate-x-1/2"></div>
             </div>
             <HashLink smooth to={`/cuisines/${item.Cuisine}`}>
-                {item.Cuisine != 'drinks' && <h2 onMouseOver={handleMouseOverCuisine} onMouseOut={handleMouseOutCuisine} className="z-60 mb-3 text-l text-gold hover:text-gray-600 border-b w-fit m-auto border-gray-600">{item.Cuisine} Cuisine</h2>}
+                {item.Cuisine !== 'drinks' && <h2 onMouseOver={handleMouseOverCuisine} onMouseOut={handleMouseOutCuisine} className="z-60 mb-3 text-l text-gold hover:text-gray-600 border-b w-fit m-auto border-gray-600">{item.Cuisine} Cuisine</h2>}
             </HashLink>
 
             {/* Description */}
@@ -97,7 +95,7 @@ export const MenuCard = ({ item, addToCart }) => {
             {/* PRICE */}
             <h3 className="mb-3">£{item.Price}</h3>
             {/* Calories */}
-            {calories == 0 ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" /> : <h3 className="mb-3">{totalCals} calories</h3>}
+            {calories === 0 ? <img src={loadingImage} alt="menu item" className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" /> : <h3 className="mb-3">{totalCals} calories</h3>}
             {/* Add to Cart */}
             <button className="bg-transparent hover:bg-gold text-gold font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent"
                 onClick={() => addToCart(item, 1)}

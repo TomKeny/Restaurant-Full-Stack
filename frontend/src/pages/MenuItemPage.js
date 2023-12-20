@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import getItem from "../api/getItem"
 import { ItemCard } from "../components/ItemCard"
-import { Link } from "react-router-dom"
 
 export const MenuItemPage = ({ addToCart }) => {
 

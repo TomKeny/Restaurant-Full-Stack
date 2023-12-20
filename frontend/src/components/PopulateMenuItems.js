@@ -69,8 +69,7 @@ export const PopulateMenuItems = () => {
             Cuisine: el.cuisine,
             Ingredients: el.ingredients,
             Image: el.image,
-            MenuSet: el.menuSet,
-            Ingredients: el.ingredients
+            MenuSet: el.menuSet
         })
     })
 }

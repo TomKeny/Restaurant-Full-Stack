@@ -34,15 +34,15 @@ export const MenuPage = ({ addToCart }) => {
 
             {menu.length === 0
                 ? <div>
-                    <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
+                    <img src={loadingImage} alt="food" className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
                     <p className="m-auto mt-1 text-center">Populating Menu. Refresh the page.</p>
                 </div>
                 : <>
                     <div className='flex w-1/2 h-20 ml-auto mr-auto place-content-evenly'>
-                        <h1 onClick={() => changeMenu("starters")} className='flex text-2xl hover:text-gray-200 hover:bg-gray-800 h-max p-2 rounded'>Starters</h1>
-                        <h1 onClick={() => changeMenu("mains")} className='flex text-2xl hover:text-gray-200 hover:bg-gray-800 h-max p-2 rounded'>Mains</h1>
-                        <h1 onClick={() => changeMenu("desserts")} className='flex text-2xl hover:text-gray-200 hover:bg-gray-800 h-max p-2 rounded'>Desserts</h1>
-                        <h1 onClick={() => changeMenu("drinks")} className='flex text-2xl hover:text-gray-200 hover:bg-gray-800 h-max p-2 rounded'>Drinks</h1>
+                        <h1 onClick={() => changeMenu("starters")} className="cursor-pointer underline underline-offset-4 decoration-white hover:-translate-y-1 scale-5 duration-200 hover:text-gold">Starters</h1>
+                        <h1 onClick={() => changeMenu("mains")} className="cursor-pointer underline underline-offset-4 decoration-white hover:-translate-y-1 scale-5 duration-200 hover:text-gold">Mains</h1>
+                        <h1 onClick={() => changeMenu("desserts")} className="cursor-pointer underline underline-offset-4 decoration-white hover:-translate-y-1 scale-5 duration-200 hover:text-gold">Desserts</h1>
+                        <h1 onClick={() => changeMenu("drinks")} className="cursor-pointer underline underline-offset-4 decoration-white hover:-translate-y-1 scale-5 duration-200 hover:text-gold">Drinks</h1>
                     </div>
                     <MenuSet menu={menu} addToCart={addToCart} menuSet={menuSet} />
                 </>

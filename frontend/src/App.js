@@ -7,11 +7,8 @@ import { HomePage } from './pages/HomePage';
 import { MenuPage } from './pages/MenuPage';
 import { MenuItemPage } from './pages/MenuItemPage';
 import { CartPage } from './pages/CartPage';
-import {Cuisines} from './pages/Cuisines'
-
-import Login from './components/Login';
+import { Cuisines } from './pages/Cuisines'
 import { ReviewPage } from './pages/ReviewPage';
-
 import getItems from './api/getItems';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
@@ -32,7 +29,7 @@ function App() {
   // populate menu items if none exist
   async function populate() {
     let response = await getItems("item", {})
-    if (response.length == 0) {
+    if (response.length === 0) {
       PopulateMenuItems()
     }
   }
@@ -72,12 +69,12 @@ function App() {
     )
   }
 
-  function destroyFromCart (item) {
+  function destroyFromCart(item) {
     let tempCart = [...cartItems]
     let tempQuantity = cartQuantity
     for (let i = 0; i < tempCart.length; i++) {
-      if (tempCart[i] == item) {
-        tempCart.splice(i,1)
+      if (tempCart[i] === item) {
+        tempCart.splice(i, 1)
         tempQuantity -= item.quantity
         break
       }
@@ -92,7 +89,6 @@ function App() {
 
     const userID = localStorage.getItem("userID");
     if (userID !== null) {
-      console.log(userID)
       setUserID(JSON.parse(userID));
     }
 
@@ -101,8 +97,6 @@ function App() {
   // get cart items from local storage and update state
   useEffect(() => {
     const cartItemsFromLocalStorage = JSON.parse(localStorage.getItem("cartItems")) || [];
-    console.log('>>>>', cartItemsFromLocalStorage)
-
 
     if (cartItemsFromLocalStorage.length) {
       // set cart items in state
@@ -133,70 +127,73 @@ function App() {
   // .....
   useEffect(() => {
     localStorage.setItem("userID", JSON.stringify(userID))
-    console.log(userID)
   }, [userID]);
 
   if (!cartItems) return (
     <div className='h-screen w-screen bg-fancy-dark-blue place-content-center grid'>
-      <img src={loadingImage} className='w-40 h-40 animate-spin-slow place-self-center'/>
+      <img src={loadingImage} alt="loading" className='w-40 h-40 animate-spin-slow place-self-center' />
       <h1 className='text-gold text-3xl w-max h-max place-self-center mt-5'>loading...</h1>
     </div>
   )
 
   return (
-    <div className=" h-full text-white bg-fancy-dark-blue">
+    <div className="text-white bg-fancy-dark-blue">
 
       <BrowserRouter>
 
         <Nav userID={userID} setUserID={setUserID} cartQuantity={cartQuantity} />
 
-        <Routes>
-          <Route
-            path='/'
-            element={<HomePage />}
-          />
-          <Route
-            path='/menu'
-            element={<MenuPage addToCart={addToCart} />}
-          />
-          <Route
-            path='/menuitem/:id'
-            element={<MenuItemPage addToCart={addToCart} />}
-          />
-          <Route
-            path='/cuisines/:cuisine'
-            element={<Cuisines addToCart={addToCart} />}
-          />
+        <div className="main min-h-screen pb-20">
 
-          <Route
-            path='/cart'
-            element={<CartPage cartItems={cartItems} cartSubTotal={cartSubTotal} addToCart={addToCart} removeFromCart={removeFromCart} destroyFromCart={destroyFromCart}/>}
-          />
+          <Routes>
+            <Route
+              path='/'
+              element={<HomePage />}
+            />
+            <Route
+              path='/menu'
+              element={<MenuPage addToCart={addToCart} />}
+            />
+            <Route
+              path='/menuitem/:id'
+              element={<MenuItemPage addToCart={addToCart} />}
+            />
+            <Route
+              path='/cuisines/:cuisine'
+              element={<Cuisines addToCart={addToCart} />}
+            />
 
-          <Route
-            path='/checkout'
-            element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems} cartSubTotal={cartSubTotal} userID={userID}/>}
-          />
+            <Route
+              path='/cart'
+              element={<CartPage cartItems={cartItems} cartSubTotal={cartSubTotal} addToCart={addToCart} removeFromCart={removeFromCart} destroyFromCart={destroyFromCart} />}
+            />
 
-          <Route
-            path='/contactus'
-            element={<ContactUsPage />}
-          />
+            <Route
+              path='/checkout'
+              element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems} cartSubTotal={cartSubTotal} userID={userID} />}
+            />
 
-          <Route
+            <Route
+              path='/contactus'
+              element={<ContactUsPage />}
+            />
 
-            path='/reviews'
-            element={<ReviewPage />}
-          />
-              
-          <Route
+            <Route
 
-            path='/orderhistory'
-            element={<OrderHistory userID={userID}/>}
+              path='/reviews'
+              element={<ReviewPage />}
+            />
 
-          />
+            <Route
 
-        </Routes>
+              path='/orderhistory'
+              element={<OrderHistory userID={userID} />}
+
+            />
+
+          </Routes>
+
+        </div>
 
         <Footer />
       </BrowserRouter>

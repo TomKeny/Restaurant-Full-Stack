@@ -22,7 +22,6 @@ const Login = ({ setUserID }) => {
     async function registerSubmitHandler(e) {
         e.preventDefault()
         let response = await addItem("user", { Username: username, Password: password })
-        console.log(response)
         let newResponse = await getItems("user", { Username: username, Password: password })
 
         setUsername("")

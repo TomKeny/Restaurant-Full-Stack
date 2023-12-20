@@ -8,13 +8,6 @@ import getItems from '../api/getItems';
 import addItem from '../api/addItem';
 import { useLocation } from 'react-router-dom';
 
-const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Menu', href: '/menu' },
-    { name: 'Reviews', href: '/reviews' },
-    { name: 'Contact Us', href: '/contactus' },
-]
-
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -40,7 +33,7 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
         if (response.length > 0) {
             setUserID({ UserID: response[0]._id, Username: response[0].Username })
         }
-        else if (response.length == 0) {
+        else if (response.length === 0) {
             alert("Error: Invalid username and/or password")
         }
     }
@@ -48,7 +41,6 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
     async function registerSubmitHandler(e) {
         e.preventDefault()
         let response = await addItem("user", { Username: username, Password: password })
-        console.log(response)
         let newResponse = await getItems("user", { Username: username, Password: password })
 
         setUsername("")
@@ -65,7 +57,7 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
         for (let i = 0; i < 4; i++) {
             tempNavigation[i].current = false
         }
-        if (index != -1) {
+        if (index !== -1) {
             tempNavigation[index].current = true
         }
         setNavigation(tempNavigation)
@@ -74,7 +66,6 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
     let location = useLocation()
 
     useEffect(() => {
-        console.log(window.location.pathname)
         switch (window.location.pathname) {
             case "/":
                 setActive(0)
@@ -118,7 +109,7 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                 {/* logo */}
                                 <NavLink to={'/'}>
                                     <div className="flex flex-shrink-0 items-center">
-                                        <img className="h-12 me-3" src={logo} />
+                                        <img className="h-12 me-3" src={logo} alt="logo" />
                                     </div>
                                 </NavLink>
 
@@ -153,14 +144,24 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative ml-3">
                                     <div>
-                                        <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                        <Menu.Button className="relative flex rounded-full bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                             <span className="absolute -inset-1.5" />
                                             <span className="sr-only">Open user menu</span>
-                                            <img
-                                                className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt="User image"
-                                            />
+
+
+                                            {/* if logged in, show initials */}
+                                            {
+                                                userID.Username ?
+
+                                                    (<span className="h-8 w-8 rounded-full bg-turquoise text-center text-lg font-bold">
+                                                        <p>{userID.Username[0]}</p>
+                                                    </span>) :
+
+                                                    (<img className="h-8 w-8 rounded-full" alt="avatar"
+                                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREh8TIFWYXVR4v4TeSVn20PTQ5WNaF5IteeQ&usqp=CAU"
+                                                    />)
+                                            }
+
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -173,11 +174,11 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            {userID == "" ?
+                                            {userID === "" ?
                                                 <Menu.Item>
                                                     {({ active }) => (
                                                         <>
-                                                            <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler} style={{ textAlign: "center" }}>
+                                                            <form onSubmit={toggle ? loginSubmitHandler : registerSubmitHandler} className="padding-10 text-center">
                                                                 <label>
                                                                     <div className='text-black text-xs'>Username:</div>
                                                                     <input id="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
@@ -187,7 +188,7 @@ export const Nav = ({ userID, setUserID, cartQuantity }) => {
                                                                     <div className='text-black text-xs'>Password:</div>
                                                                     <input id="Password" type="text" value={password} onChange={(e) => setPassword(e.target.value)} style={{ backgroundColor: "rgb(235,235,235)", color: "black", marginBottom: 5 }}></input>
                                                                 </label>
-                                                                
+
                                                                 <br></br>
                                                                 <button
                                                                     style={{ marginLeft: "auto", marginRight: "auto" }}

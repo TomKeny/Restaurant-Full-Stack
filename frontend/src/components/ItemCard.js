@@ -12,13 +12,13 @@ export const ItemCard = ({ item, addToCart }) => {
     const [btnStyle, setBtnStyle] = useState('border-2 border-gold bg-transparent')
     const [allBtnStyle, setAllBtnStyle] = useState('bg-gold font-bold')
 
-    
+
 
     // This has already been done on MenuCard.js but I couldn't get passing it as a param to work and couldn't figure how else to pass it to this route so I'm just fetching it again
     const fetchCalories = async () => {
         let query = ""
-        item.Ingredients?.map((el, index) => {
-            if (index == item.Ingredients.length - 1) {
+        item.Ingredients?.forEach((el, index) => {
+            if (index === item.Ingredients.length - 1) {
                 query += `${el.quantity} ${el.name}`
             } else {
                 query += `${el.quantity} ${el.name} and `
@@ -92,14 +92,14 @@ export const ItemCard = ({ item, addToCart }) => {
     const handleClick = (el, index) => {
         // reset button styling
         setAllBtnStyle('border-2 border-gold bg-transparent')
-        for (let i=0; i<calLength; i++) {
+        for (let i = 0; i < calLength; i++) {
             let button = document.getElementById(i)
             button.style.backgroundColor = 'transparent'
             button.style.fontWeight = '400'
         }
-        if (el == "All Ingredients") {
-            setCalorieDisplay(totalNutrition)   
-            setAllBtnStyle('bg-gold font-bold')         
+        if (el === "All Ingredients") {
+            setCalorieDisplay(totalNutrition)
+            setAllBtnStyle('bg-gold font-bold')
         } else {
             setCalorieDisplay(el)
             // Button styling
@@ -131,8 +131,8 @@ export const ItemCard = ({ item, addToCart }) => {
             </button>
             {/* horizontal line */}
             <div className="my-10 border-b w-2/3 m-auto"></div>
-            {calories == 0
-                ? <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
+            {calories === 0
+                ? <img src={loadingImage} alt="loading" className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
                 : <h2 className="mb-3 text-xl font-semibold">Calorie Information</h2>}
 
             <div className="flex justify-center">

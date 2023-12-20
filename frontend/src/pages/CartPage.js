@@ -5,19 +5,19 @@ export const CartPage = ({ cartItems, cartSubTotal, addToCart, removeFromCart, d
 
 	if (cartItems.length === 0) {
 		return (
-			<div className="h-full bg-gray-100 pt-2 text-gray-700">
-				<h1 className="m-5 text-center text-gray-700 text-2xl font-bold">Cart</h1>
+			<div className="h-screen bg-gray-100 pt-2 text-gray-700">
+				<h1 className="m-5 text-center text-gray-700 text-4xl font-bold">Cart</h1>
 				<div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
 
-					<h1>Your cart is empty</h1>
+					<h1 className="text-center">Your cart is empty</h1>
 				</div>
 			</div>
 		)
 	}
 
 	return (
-		<div className="bg-gray-100 pt-2 text-gray-700">
-			<h1 className="m-5 text-center text-gray-700 text-2xl font-bold">Cart</h1>
+		<div className="h-screen bg-gray-100 pt-2 text-gray-700">
+			<h1 className="m-5 text-center text-gray-700 text-4xl font-bold">Cart</h1>
 			<div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
 				<div className="rounded-lg md:w-2/3">
 
@@ -26,7 +26,7 @@ export const CartPage = ({ cartItems, cartSubTotal, addToCart, removeFromCart, d
 							<div div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start" >
 
 								{/* TODO - image needed here */}
-								< img src={placeholderImg} alt="product-image" className="w-full rounded-lg sm:w-40" />
+								< img src={placeholderImg} alt="product" className="w-full rounded-lg sm:w-40" />
 
 								<div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
 									<div className="mt-5 sm:mt-0">
@@ -70,29 +70,13 @@ export const CartPage = ({ cartItems, cartSubTotal, addToCart, removeFromCart, d
 							<p className="text-sm text-gray-700">including VAT</p>
 						</div>
 					</div>
-						<Link 
-						to={cartSubTotal == 0 ? "/cart":"/checkout"}
+					<Link
+						to={cartSubTotal === 0 ? "/cart" : "/checkout"}
 						className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 display: block text-center">
 						Check out
-						</Link>
+					</Link>
 				</div>
 			</div>
 		</div >
 	)
 }
-
-
-{/* <style>
-    @layer utilities {
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-  }
-</style> */}
-
-
-
-
-

@@ -20,9 +20,9 @@ export const Cuisines = ({ addToCart }) => {
         getAndSetMenu()
     }, [])
 
-    if (menu.length == 0) return (
+    if (menu.length === 0) return (
         <div>
-            <img src={loadingImage} className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
+            <img src={loadingImage} alt="food" className="w-10 h-10 place-self-center mr-auto ml-auto animate-spin-slow mb-3" />
             <p className="m-auto mt-1 text-center">Populating Menu. Refresh the page.</p>
         </div>
     )
@@ -34,7 +34,7 @@ export const Cuisines = ({ addToCart }) => {
                 return (
                     menu.map(item => {
                         return (
-                            item.MenuSet == menuSet && item.Cuisine == cuisine &&
+                            item.MenuSet === menuSet && item.Cuisine === cuisine &&
                             <MenuCard
                                 item={item}
                                 addToCart={addToCart}
@@ -43,9 +43,8 @@ export const Cuisines = ({ addToCart }) => {
                         )
                     })
                 )
-            }
+            })}
 
-            )}
             <Link to={'/menu'}>
                 <h2 className="text-1xl text-center m-5 border-b w-fit m-auto border-gray-600 my-5 hover:text-gray-600">Back to Full Menu</h2>
             </Link>
